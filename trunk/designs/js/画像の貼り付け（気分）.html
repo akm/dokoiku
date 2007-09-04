@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<script type="text/javascript">
+		<!--
+		
+		// 気分選択フラグ
+		var marked_color = false;
+		
+		// 気分選択
+		function changeColorPosition(event, xpos, ypos) {
+			if (!marked_color) {
+				if (!event) { event = window.event; }
+				var hx, hy;
+				if (document.all) {
+					hx = event.offsetX;
+					hy = event.offsetY;
+				} else {
+					hx = event.layerX;
+					hy = event.layerY;
+				}
+				
+				xpos.value = hx;
+				ypos.value = hy;
+				
+				cwidth = document.all.circle.width;
+				cheight = document.all.circle.height;
+				document.all.circle.style.top = document.body.scrollTop + window.event.clientY - cheight/2;
+				document.all.circle.style.left = document.body.scrollLeft + window.event.clientX - cwidth/2;
+				document.all.circle.style.visibility = "visible";
+				
+				marked_color = true;
+			}
+		}
+		
+		// 気分クリア
+		function clearColorMark(xpos, ypos) {
+			xpos.value = "";
+			ypos.value = "";
+			marked_color = false;
+			document.all.circle.style.visibility = "hidden";
+		}
+		//-->
+		</script>
+	</head>
+	<body>
+		<form name="test">
+			<div onclick="changeColorPosition(event, forms['test'].elements['xpos'], forms['test'].elements['ypos'])" style="width:100px;height:100px;background-color:red"></div>
+			X: <input type="text" name="xpos">
+			Y: <input type="text" name="ypos">
+			<img src="./circle.gif" border="0" id="circle" style="position:absolute; visibility:hidden">
+			<input type="button" value="clear" onclick="clearColorMark(forms['test'].elements['xpos'], forms['test'].elements['ypos'])">
+		</form>
+	</body>
+</html>
