@@ -6,7 +6,6 @@
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie_hack.css" />
 <![endif]-->
-<link rel="stylesheet" type="text/css" href="css/top.css" />
 </head>
 <body id="top">
 <div id="all">
@@ -14,25 +13,35 @@
     <h1><a href="index.html"><img src="img/logo.gif" alt="今日はどこ行くと～？" width="324" height="55" /></a></h1>
   </div>
   <div id="container">
-    <div class="left_box">
-    <h2><img src="img/select1.gif" alt="出発地を選んでください" width="380" height="30" /></h2>
-     <img src="img/map_dammy.gif" alt="googlemap" width="380" height="340" />
-    </div>
-    <div class="right_box">
-	<h2><img src="img/select2.gif" alt="今日の気分を選んでください" width="380" height="30" /></h2>
-	<img src="img/color_dammy.gif" alt="colors" width="380" height="340" />
-	</div>
-    <div class="left_box">
-      <h2><img src="img/select3.gif" alt="今日の目的を選んでください" width="380" height="30" /></h2>
-      デート、1人、友達と、大勢で、観光で
-    </div>
-    <div class="right_box">
-      <h2><img src="img/select4.gif" alt="今日の予算を選んでください" width="380" height="30" /></h2>
-      price_list
-    </div>
-    <div class="text_center">
-    <img src="img/btn.gif" alt="この条件で検索する" width="360" height="42" />
-    </div>
+    <form action="" method="post">
+      <div class="left_box">
+        <h2><img src="img/select1.gif" alt="出発地を選んでください" width="380" height="30" /></h2>
+        <img src="img/map_dammy.gif" alt="googlemap" width="380" height="340" /> </div>
+      <div class="right_box">
+        <h2><img src="img/select2.gif" alt="今日の気分を選んでください" width="380" height="30" /></h2>
+        <img src="img/color_dammy.gif" alt="colors" width="380" height="340" /> </div>
+      <div class="left_box">
+        <h2><img src="img/select3.gif" alt="今日の目的を選んでください" width="380" height="30" /></h2>
+        <input name="" type="radio" value="couple" />デート
+        <input name="" type="radio" value="alone" />1人
+         <input name="" type="radio" value="friend" />友達と
+         <input name="" type="radio" value="many" />大勢で
+         <input name="" type="radio" value="trip" />観光で
+      </div>
+      <div class="right_box margin_b10px">
+        <h2><img src="img/select4.gif" alt="今日の予算を選んでください" width="380" height="30" /></h2>
+        <select name="select" id="select">
+          <option>選択してください</option>
+          <option>1,000円以下</option>
+          <option>1,000円～3,000円</option>
+          <option>3,000円～5,000円</option>
+          <option>5,000円～10,000円</option>
+          <option>10,000円以上</option>
+        </select>
+      </div>
+      <br class="clears" />
+      <div class="text_center"> <a href="result.html"><img src="img/btn.gif" alt="この条件で検索する" width="360" height="42" /></a> </div>
+    </form>
   </div>
   <div id="footer">
     <p id="copyright">Copyright 2007 今日はどこ行くと～？ All Rights Reserved.</p>
