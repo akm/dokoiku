@@ -17,22 +17,11 @@ a:visited { color:#636; }
 a:hover { color:#900; }
 a:active { color: red; }
 
-#header h2{
-  font-size:smaller;
-}
-
-#container h2#h2_title{
-  font-size:x-large;
-  font-weight:bold;
-}
 #main_content h3{
   font-size:large;
   font-weight:bold;
 }
-#footer ul li{
-  font-size:0.9em;
-}
 
-.font_small{
-  font-size:x-small;
-}
+.font_small{font-size:x-small;}
+.font_bold{font-weight:bold;}
+.font_red{color:#c00;}
