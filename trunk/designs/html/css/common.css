@@ -57,6 +57,10 @@ body{
   width:176px;
 }
 
+#detail{
+  clear:both;
+}
+
 /* sub layout */
 #container h2 img{
   margin:10px 0;
@@ -71,25 +75,70 @@ body{
   text-align:center;
 }
 
-ul.list1{
-  margin:15px;
+h2#other_cource{
+  padding:5px 0 6px 7px;
+  margin:5px 0;
+  background:url(../img/bg_other.gif) no-repeat 0 0;
 }
-ul.list1 li a{
-  padding:0 0 5px 12px;
-  background:url(../img/common/list.gif) no-repeat 0em .3em;
+h2#parameter{
+  padding:5px 0 6px 7px;
+  margin:5px 0;
+  background:url(../img/bg_point.gif) no-repeat 0 0;
 }
 
-.h_style2{
-  height:24px;
-  padding:4px 0 0 15px;
-  background:url(../img/top/title_blog.gif) no-repeat 0 0;
+#result_list ul{
+  margin:0 10px 0 0;
+}
+#result_list ul li{
+  padding:0 0 5px 15px;
+  background:url(../img/list.gif) no-repeat 0em .3em;
+}
+#result_list ul li a{
+  font-weight:bold;
+  text-decoration:none;
+  color:#c00;
+}
+
+#result_list dl{
+  margin-bottom:10px;
+}
+#result_list dl dt{
+  width:40px;
+  float:left;
+}
+#result_list dl dd{
+  width:130px;
+  float:left;
 }
 
 .margin_b10px{
   margin-bottom:10px;
 }
 
-.link_list a{
+#more_cource{
+  text-align:right;
+}
+#more_cource a{
   padding:0 0 5px 12px;
-  background:url(../img/common/list2.gif) no-repeat 0em .3em;
+  text-decoration:none;
+  background:url(../img/list2.gif) no-repeat 0em .3em;
+}
+
+#detail table{
+	border-collapse:collapse;
+	width:100%;
+}
+	#detail table th{
+		font-weight:normal;
+		text-align:left;
+		background:#fcc;
+	}
+	#detail table th,
+	#detail table td{
+		padding:5px;
+		border-bottom:1px solid #f99;
+	}
+
+.star_point{
+  color:#f90;
 }
