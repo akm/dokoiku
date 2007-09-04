@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<script type="text/javascript">
+		<!--
+		
+		// スポット番号
+		var spot_num = 0;
+
+		// 選択中番号
+		var spot_selected = 0;
+		
+		// ドラッグ中
+		var drag_flg = false;
+		
+		// スポット選択
+		function changeSpotPosition(event, xpos, ypos) {
+			if (!event) { event = window.event; }
+			var hx, hy;
+			if (document.all) {
+				hx = event.offsetX;
+				hy = event.offsetY;
+			} else {
+				hx = event.layerX;
+				hy = event.layerY;
+			}
+			
+			xpos[spot_selected].value = hx;
+			ypos[spot_selected].value = hx;
+			
+			cwidth = document.all.spot[spot_selected].width;
+			cheight = document.all.spot[spot_selected].height;
+			document.all.spot[spot_selected].style.top = document.body.scrollTop + window.event.clientY - cheight/2;
+			document.all.spot[spot_selected].style.left = document.body.scrollLeft + window.event.clientX - cwidth/2;
+			document.all.spot[spot_selected].style.visibility = "visible";
+			
+			spot_num++;
+			spot_selected++;
+			drag_flg = false;
+		}
+		
+		// スポットクリア
+		function clearSpotMark(xpos, ypos) {
+			for (i=0; i<spot_num; i++) {
+				xpos[i].value = "";
+				ypos[i].value = "";
+				document.all.spot[i].style.visibility = "hidden";
+			}
+			spot_num = 0;
+			spot_selected = 0;
+		}
+		
+		// スポット選択
+		function selectSpot(index) {
+			spot_selected = index;
+			drag_flg = true;
+		}
+		//-->
+		</script>
+	</head>
+	<body>
+		<form name="test">
+			<div onclick="changeSpotPosition(event, forms['test'].elements['spot_xpos'], forms['test'].elements['spot_ypos'])" style="width:100px;height:100px;background-color:red"></div>
+			SPOT1 X: <input type="text" name="spot_xpos"> Y: <input type="text" name="spot_ypos"><br>
+			SPOT2 X: <input type="text" name="spot_xpos"> Y: <input type="text" name="spot_ypos"><br>
+			SPOT3 X: <input type="text" name="spot_xpos"> Y: <input type="text" name="spot_ypos"><br>
+			SPOT4 X: <input type="text" name="spot_xpos"> Y: <input type="text" name="spot_ypos"><br>
+			SPOT5 X: <input type="text" name="spot_xpos"> Y: <input type="text" name="spot_ypos"><br>
+			<img onclick="selectSpot(0)" src="spot.gif" border="0" id="spot" style="position:absolute; visibility:hidden">
+			<img onclick="selectSpot(1)" src="spot.gif" border="0" id="spot" style="position:absolute; visibility:hidden">
+			<img onclick="selectSpot(2)" src="spot.gif" border="0" id="spot" style="position:absolute; visibility:hidden">
+			<img onclick="selectSpot(3)" src="spot.gif" border="0" id="spot" style="position:absolute; visibility:hidden">
+			<img onclick="selectSpot(4)" src="spot.gif" border="0" id="spot" style="position:absolute; visibility:hidden">
+			<input type="button" value="clear" onclick="clearSpotMark(forms['test'].elements['spot_xpos'], forms['test'].elements['spot_ypos'])">
+		</form>
+	</body>
+</html>
