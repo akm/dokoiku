@@ -4,7 +4,7 @@
 		map.markers << GoogleMapMarker.new(:map => map, 
 	                                   :lat => spot.latitude.to_f, 
 	                                   :lng => spot.longitude.to_f,
-	                                   :html => (render :partial => 'spot/inside_baloon', :locals => {:spot => spot }))
+	                                   :html => (render :partial => 'inside_baloon', :locals => {:spot => spot }))
 	end
 	if map.markers.empty?
 		map.markers << GoogleMapMarker.new(:map => map, 
@@ -18,23 +18,78 @@
 <%= javascript_include_tag 'json' %>
 <script type="text/javascript">
 //<![CDATA[
-var spots = []
-var custom_google_map = null;
+var spots = [];
+var markers = [];
+
 function customize_google_map(){
-	  var initialize_without_customize = window.onload;
-	  window.onload = function(){
-	  	initialize_without_customize();
-		
-		// custom_google_map = google_map;
-		GEvent.addListener(google_map, 'click', function(overlay, point) {
-			  if (point) {
-			  	spots.push({latitude: point.y, longitude: point.x});
-		      	$('spots_json').value = JSON.toJSON(spots)
-				google_map.addOverlay( new GMarker(point));
-			  }
-		    });
+  var initialize_without_customize = window.onload;
+  window.onload = function(){
+  	initialize_without_customize();
+	GEvent.addListener(google_map, 'click', function(overlay, point) {
+	  if (overlay){
+	  	var markerIndex = markers.indexOf(overlay);
+		if (markerIndex && (markerIndex < 0))
+			return;
+		var marker = overlay;
+		var spot = spots[markerIndex];
+		var elements = generateInfoWindowContent(spot);
+		var infoWindow = marker.openInfoWindowHtml(elements.content);
+		GEvent.addListener(marker, "infowindowclose", function(){
+			spot.name = elements.name.value;
+			spot.comment = elements.comment.value;
+	      	$('spots_json').value = JSON.toJSON(spots);
+		});
+		return;
 	  }
+	  if (point) {
+	  	var markerIndex = markers.length + 1;
+		if (markerIndex > 9)
+			return;
+	  	var iconObj = new GIcon();
+		iconObj.image = "/img/icon/pt" + markerIndex + ".gif";
+		iconObj.iconSize = new GSize(38,53);
+		iconObj.shadow = "http://www.google.com/mapfiles/shadow50.png";
+		iconObj.shadowSize = new GSize(37, 50);
+		iconObj.iconAnchor = new GPoint(18, 50);
+		iconObj.infoWindowAnchor = new GPoint(18, 50);
+	  	var marker = new GMarker(point, iconObj);
+	  	markers.push(marker);
+		google_map.addOverlay(marker);
+	  	var spot = {latitude: point.y, longitude: point.x};
+		spots.push(spot);
+      	$('spots_json').value = JSON.toJSON(spots);
+		var elements = generateInfoWindowContent({});
+		var infoWindow = marker.openInfoWindowHtml(elements.content);
+		GEvent.addListener(marker, "infowindowclose", function(){
+			spot.name = elements.name.value;
+			spot.comment = elements.comment.value;
+	      	$('spots_json').value = JSON.toJSON(spots);
+		});
+		setTimeout(function(){
+			elements.name.focus();
+			elements.name.select();
+		}, 300);
+	  }
+    });
+  }
 }
+function generateInfoWindowContent(spot){
+	var result = document.createElement('div');
+	var name_container =  document.createElement('p');
+	var name_element =  document.createElement('input');
+	name_element.type = "text";
+	name_element.size = 30;
+	name_element.value = spot.name || '';
+	var comment_element =  document.createElement('textarea');
+	comment_element.cols = 30;
+	comment_element.rows = 4;
+	comment_element.innerHTML = spot.comment || '';
+	name_container.appendChild(name_element);
+	result.appendChild(name_container);
+	result.appendChild(comment_element);
+	return {content: result, name: name_element, comment: comment_element};
+}
+
 //]]>
 </script>
 
