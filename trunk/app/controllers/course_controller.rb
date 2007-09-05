@@ -2,7 +2,7 @@ require 'json'
 
 class CourseController < ApplicationController
 
-  include AuthenticatedSystem
+  # include AuthenticatedSystem
   before_filter :login_required
 
   def index
