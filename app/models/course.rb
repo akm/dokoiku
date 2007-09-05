@@ -20,8 +20,8 @@ class Course < ActiveRecord::Base
     attr_accessor :purpose_cd, :budget_cd
     include ActiveRecord::Base::Columari
   
-    def initialize(attrs = {})
-      attrs.each{|k,v|self.send("#{k.to_s}=", v)}
+    def initialize(attrs = nil)
+      (attrs || {}).each{|k,v|self.send("#{k.to_s}=", v)}
     end
     
     Context.new(self, :name => :purpose_cd).instance_eval do
