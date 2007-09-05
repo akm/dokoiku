@@ -7,21 +7,21 @@ ActiveRecord::Schema.define(:version => 3) do
   create_table "courses", :force => true do |t|
     t.column "name",       :string,  :limit => 200
     t.column "comment",    :text
-    t.column "creator_id", :integer,                :default => 0, :null => false
+    t.column "points",     :integer,                :default => 0, :null => false
+    t.column "creator_id", :integer
     t.column "created_at", :time
     t.column "updated_at", :time
   end
 
   create_table "spots", :force => true do |t|
-    t.column "name",         :string,  :limit => 200
-    t.column "latitude",     :string,  :limit => 100
-    t.column "longitude",    :string,  :limit => 100
-    t.column "default_zoom", :string,  :limit => 100
-    t.column "comment",      :text
-    t.column "course_id",    :integer
-    t.column "creator_id",   :integer
-    t.column "created_at",   :time
-    t.column "updated_at",   :time
+    t.column "course_id",  :integer
+    t.column "line_no",    :integer
+    t.column "latitude",   :float
+    t.column "longitude",  :float
+    t.column "name",       :string,  :limit => 200
+    t.column "comment",    :text
+    t.column "created_at", :time
+    t.column "updated_at", :time
   end
 
   create_table "users", :force => true do |t|
