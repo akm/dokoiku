@@ -1,29 +1,93 @@
     <form action="" method="post">
       <div class="left_box">
-        <h2><img src="/img/select1.gif" alt="出発地を選んでください" width="380" height="30" /></h2>
-        <img src="/img/map_dammy.gif" alt="googlemap" width="380" height="340" /> </div>
-      <div class="right_box">
-        <h2><img src="/img/select2.gif" alt="今日の気分を選んでください" width="380" height="30" /></h2>
-        <img src="/img/color_dammy.gif" alt="colors" width="380" height="340" /> </div>
-      <div class="left_box">
+          <h2><img src="/img/select1.gif" alt="出発地を選んでください" width="380" height="30" /></h2>
+		  <%= hidden_field 'question', 'start_x', :id => "question_start_x" %>
+		  <%= hidden_field 'question', 'start_y', :id => "question_start_y" %>
+<%- map = GoogleMap.new -%>
+<%- 
+	current_user.spots.each do |spot|
+		map.markers << GoogleMapMarker.new(:map => map, 
+	                                   :lat => spot.latitude.to_f, 
+	                                   :lng => spot.longitude.to_f,
+	                                   :html => (render :partial => 'spot/inside_baloon', :locals => {:spot => spot }))
+	end
+	if map.markers.empty?
+		map.markers << GoogleMapMarker.new(:map => map, 
+                           :lat => 32.74207489599587, 
+                           :lng => 129.87160563468933,
+                           :html => '',
+						   :icon => GoogleMapIcon.new(:image_url => '/img/icon/people.gif', :width => 20, :height => 64, :anchor_x => 10, :anchor_y => 60))
+	end
+-%>
+<script type="text/javascript">
+//<![CDATA[
+var spots = []
+var custom_google_map = null;
+function customize_google_map(){
+	  var initialize_without_customize = window.onload;
+	  window.onload = function(){
+	  	initialize_without_customize();
+		
+		// custom_google_map = google_map;
+		GEvent.addListener(google_map, 'click', function(overlay, point) {
+			  if (point) {
+			  	$("question_start_x").value = point.x;
+			  	$("question_start_y").value = point.y;
+				google_map_marker_1.setPoint(new GLatLng(point.y, point.x))
+			  }
+		    });
+	  }
+}
+//]]>
+</script>
+		  <%= map.to_html{"customize_google_map();"} %>
+		  <div style="width: 380px; height: 340px;">
+		    <%= map.div %>
+		  </div>
+	  </div>
+      
+	  <div class="right_box">
+          <h2><img src="/img/select2.gif" alt="今日の気分を選んでください" width="380" height="30" /></h2>
+          <img src="/img/color_table_380_340.png" id="color_table" alt="colors" width="380" height="340" /> 
+		  <img src="/img/circle_selection.png" id="color_selector" width="24" height="24" style="position:absolute; display:none;"/>
+		  <%= hidden_field 'question', 'feeling_x', :id => "question_feeling_x" %>
+		  <%= hidden_field 'question', 'feeling_y', :id => "question_feeling_y" %>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+	var color_selector = $("color_selector");
+	var color_table = $("color_table");
+	var question_feeling_x = $("question_feeling_x");
+	var question_feeling_y = $("question_feeling_y");
+	Event.observe(color_table, "click", function(event){
+		var tablePos = Position.cumulativeOffset(color_table);
+		var cursor_x = Event.pointerX(event);
+		var cursor_y = Event.pointerY(event);
+		question_feeling_x.value = cursor_x - tablePos[0];
+		question_feeling_y.value = cursor_y - tablePos[1];
+		var containerPos = Position.cumulativeOffset($("container"));
+		var color_selector_style = color_selector.style;
+		color_selector_style.display = '';
+		color_selector_style.left = (cursor_x - containerPos[0] - 12) + 'px';
+		color_selector_style.top = (cursor_y - containerPos[1] - 12) + 'px';
+	});
+})();
+//]]>
+</script>
+	  </div>
+      
+	  <div class="left_box">
         <h2><img src="/img/select3.gif" alt="今日の目的を選んでください" width="380" height="30" /></h2>
-        <input name="" type="radio" value="couple" />デート
-        <input name="" type="radio" value="alone" />1人
-         <input name="" type="radio" value="friend" />友達と
-         <input name="" type="radio" value="many" />大勢で
-         <input name="" type="radio" value="trip" />観光で
+        <%= radio_group 'question', 'purpose_cd', Course::Finder.purpose_enum.to_hash_array do |radio, label, hash, radio_id|
+              	'%s%s &nbsp;&nbsp;' % [radio, label]
+            end%>
       </div>
-      <div class="right_box margin_b10px">
+      
+	  <div class="right_box margin_b10px">
         <h2><img src="/img/select4.gif" alt="今日の予算を選んでください" width="380" height="30" /></h2>
-        <select name="select" id="select">
-          <option>選択してください</option>
-          <option>1,000円以下</option>
-          <option>1,000円～3,000円</option>
-          <option>3,000円～5,000円</option>
-          <option>5,000円～10,000円</option>
-          <option>10,000円以上</option>
-        </select>
+        <%= select("question", "budget_cd", Course::Finder.budget_options ) %>
       </div>
+	  
       <br class="clears" />
       <div class="text_center">
       	<input type="image" src="/img/btn.gif" alt="この条件で検索する" width="360" height="42" />
