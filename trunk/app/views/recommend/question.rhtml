@@ -5,12 +5,6 @@
 		  <%= hidden_field 'question', 'start_y', :id => "question_start_y" %>
 <%- map = GoogleMap.new -%>
 <%- 
-	current_user.spots.each do |spot|
-		map.markers << GoogleMapMarker.new(:map => map, 
-	                                   :lat => spot.latitude.to_f, 
-	                                   :lng => spot.longitude.to_f,
-	                                   :html => (render :partial => 'spot/inside_baloon', :locals => {:spot => spot }))
-	end
 	if map.markers.empty?
 		map.markers << GoogleMapMarker.new(:map => map, 
                            :lat => 32.74207489599587, 

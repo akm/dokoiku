@@ -3,7 +3,8 @@ class CreateCourses < ActiveRecord::Migration
     create_table :courses do |t|
       t.column :name, :string, :limit => 200
       t.column :comment, :text
-      t.column :creator_id, :integer, :null => false
+      t.column :points, :integer, :null => false, :default => 0
+      t.column :creator_id, :integer
       t.column :created_at, :time
       t.column :updated_at, :time
     end
