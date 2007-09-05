@@ -5,7 +5,7 @@
 		map.markers << GoogleMapMarker.new(:map => map, 
 	                                   :lat => spot.latitude.to_f, 
 	                                   :lng => spot.longitude.to_f,
-	                                   :html => (render :partial => 'spot/inside_baloon', :locals => {:spot => spot }))
+	                                   :html => (render :partial => 'inside_baloon', :locals => {:spot => spot }))
 	end
 	if map.markers.empty?
 		map.markers << GoogleMapMarker.new(:map => map, 
