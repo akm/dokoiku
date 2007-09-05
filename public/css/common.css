@@ -1,0 +1,127 @@
+@charset "utf-8";
+/* main layout*/
+body {
+	background:#f99;
+	text-align: center;
+}
+.clears {
+	clear:both;
+}
+#all {
+	width: 800px;
+	margin: 0 auto;
+	text-align: left;
+	position:relative;
+	background:#fff;
+}
+#header {
+	height:75px;
+	background:#f99 url(../img/header.gif) no-repeat bottom left;
+}
+#container {
+	padding:0 15px 5px 15px;
+	position:relative;
+}
+#main_content {
+}
+.left_box {
+	float:left;
+	width:380px;
+}
+.right_box {
+	float:right;
+	width:380px;
+}
+#footer {
+	clear:both;
+	padding:25px 0;
+	text-align:center;
+	background:#f99 url(../img/footer.gif) no-repeat 0 0;
+}
+/* result*/
+#map {
+	float:left;
+	width:580px;
+}
+#result_list {
+	float:right;
+	width:176px;
+}
+#detail {
+	clear:both;
+}
+/* sub layout */
+#container h2 img {
+	margin:10px 0;
+}
+/* decolation */
+.text_right {
+	text-align:right;
+}
+.text_center {
+	text-align:center;
+}
+h2#other_cource {
+	padding:5px 0 6px 7px;
+	margin:10px 0 5px 0;
+	background:url(../img/bg_other.gif) no-repeat 0 0;
+}
+h2#parameter {
+	padding:5px 0 6px 7px;
+	margin:10px 0 5px 0;
+	background:url(../img/bg_point.gif) no-repeat 0 0;
+}
+#result_list ul {
+	margin:0 10px 0 0;
+}
+#result_list ul li {
+	padding:0 0 5px 15px;
+	background:url(../img/list.gif) no-repeat 0em .3em;
+}
+#result_list ul li a {
+	font-weight:bold;
+	text-decoration:none;
+	color:#c00;
+}
+#result_list dl {
+	margin-bottom:10px;
+}
+#result_list dl dt {
+	width:40px;
+	float:left;
+}
+#result_list dl dd {
+	width:130px;
+	float:left;
+}
+.margin_b10px {
+	margin-bottom:10px;
+}
+.margin_t10px {
+	margin-top:10px;
+}
+
+#more_cource {
+	text-align:right;
+}
+#more_cource a {
+	padding:0 0 5px 12px;
+	text-decoration:none;
+	background:url(../img/list2.gif) no-repeat 0em .3em;
+}
+#detail table {
+	border-collapse:collapse;
+	width:100%;
+}
+#detail table th {
+	font-weight:normal;
+	text-align:left;
+	background:#fcc;
+}
+#detail table th,  #detail table td {
+	padding:5px;
+	border-bottom:1px solid #f99;
+}
+.star_point {
+	color:#f90;
+}

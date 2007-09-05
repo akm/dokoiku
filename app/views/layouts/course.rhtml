@@ -23,18 +23,26 @@ li.menu{
   </head>
   <body>
 	
-<div id="all">
-  <div id="header">
-    <h1><a href="/"><img src="/img/logo.gif" alt="今日はどこ行くと～？" width="324" height="55" /></a></h1>
-  </div>
-  <div id="container">
-	<%= yield%>
-  </div>
-  <div id="footer">
-    <p id="copyright">Copyright 2007 今日はどこ行くと～？ All Rights Reserved.</p>
-  </div>
-</div>
-	
+	<table>
+		<tr>
+			<td colspan="2" align="right">
+				<%=h( (current_user && current_user.respond_to?(:login) ) ? current_user.login : nil) %>
+				<br/>
+				<%= link_to 'ログアウト', :controller => 'account', :action => 'logout' %>
+			</td>
+		</tr>
+		<tr>
+			<td width="200" valign='top'>
+				<div style='scroll-x: auto; scroll-y: auto; max-height: 800px;'>
+					<%= render :partial => (@menu_name || 'layouts/course_menu') %>
+				</div>
+			</td>
+			<td  width="800">
+				<%= yield%>
+			</td>
+		</tr>
+	</table>
+		
   </body>
 
 </html>
