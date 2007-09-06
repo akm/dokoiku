@@ -10,9 +10,20 @@
 <body id="top">
 <div id="all">
   <div id="header">
-    <h1><a href="index.html"><img src="img/logo.gif" alt="今日はどこ行くと～？" width="324" height="55" /></a></h1>
+    <h1><a href="index.html"><img src="img/logo.gif" alt="今日はどこ行くと～？" width="310" height="55" /></a></h1>
   </div>
   <div id="container">
+    <div id="members_login">
+      <form action="" method="post">
+        <img src="img/m_logout_t.gif" alt="会員登録をしませんか" /><img src="img/entry_btn.gif" alt="会員登録はこちら" />
+        <div id="input_area"> ID
+          <input type="text" name="members_id" id="members_id" />
+          PW
+          <input type="text" name="members_pw" id="members_pw" />
+          <input type="image" src="img/login_btn.gif" alt="送信" style="vertical-align:bottom;" />
+          <a href="#"><img src="img/pw_btn.gif" alt="パスワード再発行" /></a> </div>
+      </form>
+    </div>
     <form action="" method="post">
       <div class="left_box">
         <h2><img src="img/select1.gif" alt="出発地を選んでください" width="380" height="30" /></h2>
@@ -22,12 +33,16 @@
         <img src="img/color_dammy.gif" alt="colors" width="380" height="340" /> </div>
       <div class="left_box">
         <h2><img src="img/select3.gif" alt="今日の目的を選んでください" width="380" height="30" /></h2>
-        <input name="" type="radio" value="couple" />デート
-        <input name="" type="radio" value="alone" />1人
-         <input name="" type="radio" value="friend" />友達と
-         <input name="" type="radio" value="many" />大勢で
-         <input name="" type="radio" value="trip" />観光で
-      </div>
+        <input name="" type="radio" value="couple" />
+        デート
+        <input name="" type="radio" value="alone" />
+        1人
+        <input name="" type="radio" value="friend" />
+        友達と
+        <input name="" type="radio" value="many" />
+        大勢で
+        <input name="" type="radio" value="trip" />
+        観光で </div>
       <div class="right_box margin_b10px">
         <h2><img src="img/select4.gif" alt="今日の予算を選んでください" width="380" height="30" /></h2>
         <select name="select" id="select">

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>オススメコース結果　今日はどこ行くと～？　今日の気分でコースを勝手に決めてくれるサイト</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" href="css/ie_hack.css" />
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="css/top.css" />
+</head>
+<body id="top">
+<div id="all">
+  <div id="header">
+    <h1><a href="index.html"><img src="img/logo.gif" alt="今日はどこ行くと～？" width="310" height="55" /></a></h1>
+  </div>
+  <div id="container">
+    <div id="members_login_now"> <img src="img/m_login_t.gif" alt="会員登録をしませんか" />
+      <div id="input_area"> <p>○○○○○○○○○○○○さんログイン中</p> 
+      <a href="#"><img src="img/logout_btn.gif" alt="ログアウト" width="77" height="22" /></a></div>
+    </div>
+    <div id="cource_menu">
+      <h2><img src="img/your_cource.gif" alt="あなたの登録コース一覧" width="200" height="28" /></h2>
+      <h3 class="my_title">新規登録コース名</h3>
+      <ol>
+        <li>ポイント名<br />
+          コメント</li>
+        <li>ポイント名<br />
+          コメント</li>
+        <li>ポイント名<br />
+          コメント</li>
+      </ol>
+      <div id="new_cource_btn"> <a href="#"><img src="img/new_cource_btn.gif" alt="新しいコースを入力" width="163" height="46" /></a> </div>
+      <ul>
+        <li><a href="#">和な時間をゆっくり楽しむコース</a><br />
+          オススメ度　<span class="star_point">★★★</span></li>
+        <li><a href="#">和な時間をゆっくり楽しむコース</a><br />
+          オススメ度　<span class="star_point">★★★</span></li>
+      </ul>
+      <hr />
+    </div>
+    <div id="cource_input">
+      <form action="" method="post">
+        <div id="c_name">
+          <h2>コース名</h2>
+          <input name="cource_name" type="text" id="cource_name" value="コース名を入れてください" />
+        </div>
+        <div id="cource_map">
+          <h2><img src="img/input_map.gif" alt="ルート表示" width="555" height="22" /></h2>
+          <div style="width:555px;height:300px;background:#ccc;"> googlemap </div>
+        </div>
+        <div id="cource_comment">
+          <h2><img src="img/input_comment.gif" alt="コメント入力" /></h2>
+          <div id="comment_box">
+            <textarea name="textarea" id="textarea" cols="45" rows="5">コメントを入れてください</textarea>
+          </div>
+        </div>
+        <div id="cource_table">
+          <h2><img src="img/input_description.gif" alt="各ポイントの説明" /></h2>
+          <table>
+            <tr>
+              <th>順路</th>
+              <th>目的地</th>
+              <th>連絡先</th>
+              <th>予算目安</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td><input type="text" name="point_name" id="point_name" /></td>
+              <td><input type="text" name="point_adr" id="point_adr" /></td>
+              <td><select name="select" id="select">
+                  <option>選択してください</option>
+                  <option>1000円</option>
+                </select></td>
+            </tr>
+          </table>
+        </div>
+        <input type="image" src="img/input_btn.gif" alt="このコースを登録する" />
+      </form>
+    </div>
+    <br class="clears" />
+  </div>
+  <div id="footer">
+    <p id="copyright">Copyright 2007 今日はどこ行くと～？ All Rights Reserved.</p>
+  </div>
+</div>
+</body>
+</html>
