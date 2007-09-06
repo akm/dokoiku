@@ -11,9 +11,20 @@
 <body id="top">
 <div id="all">
   <div id="header">
-    <h1><a href="index.html"><img src="img/logo.gif" alt="今日はどこ行くと～？" width="324" height="55" /></a></h1>
+    <h1><a href="index.html"><img src="img/logo.gif" alt="今日はどこ行くと～？" width="310" height="55" /></a></h1>
   </div>
   <div id="container">
+    <div id="members_login">
+      <form action="" method="post">
+        <img src="img/m_logout_t.gif" alt="会員登録をしませんか" /><img src="img/entry_btn.gif" alt="会員登録はこちら" />
+        <div id="input_area"> ID
+          <input type="text" name="members_id" id="members_id" />
+          PW
+          <input type="text" name="members_pw" id="members_pw" />
+          <input type="image" src="img/login_btn.gif" alt="送信" style="vertical-align:bottom;" />
+          <img src="img/pw_btn.gif" alt="パスワード再発行" /> </div>
+      </form>
+    </div>
     <h2><img src="img/result.gif" alt="あなたにオススメのコースはこちら" width="770" height="28" /></h2>
     <div id="map"> <img src="img/map2_dammy.gif" alt="googlemap" width="580" height="380" /> </div>
     <div id="result_list">
@@ -37,8 +48,7 @@
         <dd>1,000円以下</dd>
       </dl>
       <br class="clears" />
-      <a href="index.html"><img src="img/re_search_btn.gif" alt="条件を変えて検索する" width="176" height="34" class="margin_t10px" /></a>
-      </div>
+      <a href="index.html"><img src="img/re_search_btn.gif" alt="条件を変えて検索する" width="176" height="34" class="margin_t10px" /></a> </div>
     <div id="detail">
       <h2><img src="img/detail.gif" alt="コースの詳細" width="770" height="28" /></h2>
       <table border="0">
@@ -54,25 +64,40 @@
           <td>092-000-0000</td>
           <td>～1,000円</td>
         </tr>
-         <tr>
+        <tr>
           <td>2</td>
           <td>店・スポット名</td>
           <td>092-000-0000</td>
           <td>～1,000円</td>
         </tr>
-         <tr>
+        <tr>
           <td>3</td>
           <td>店・スポット名</td>
           <td>092-000-0000</td>
           <td>～1,000円</td>
         </tr>
-         <tr>
+        <tr>
           <td>4</td>
           <td>店・スポット名</td>
           <td>092-000-0000</td>
           <td>～1,000円</td>
         </tr>
       </table>
+      <div id="rate">
+        <form action="" method="post">
+          <input type="radio" name="star1" id="star1" value="star1" />
+          1つ
+          <input type="radio" name="star2" id="star2" value="star2" />
+          2つ
+          <input type="radio" name="star3" id="star3" value="star3" />
+          3つ
+          <input type="radio" name="star4" id="star4" value="star4" />
+          4つ
+          <input type="radio" name="star5" id="star5" value="star5" />
+          5つ
+          <input type="image" src="img/rate_btn.gif" alt="評価する" id="rate_btn" />
+        </form>
+      </div>
     </div>
   </div>
   <div id="footer">
