@@ -218,7 +218,9 @@ h2#parameter {
 h3.my_title {
 	padding:5px 0 6px 7px;
 	margin:10px 0 5px 0;
-	background:url(../img/my_title.gif) no-repeat 0 0;
+	background:#fcc;
+	font-weight:bold;
+	color:#c00;
 }
 #cource_input {
 	width:555px;
