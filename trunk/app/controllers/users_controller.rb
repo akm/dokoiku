@@ -13,11 +13,18 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @user.to_xml }
+    if params[:login] and params[:password]
+      @user = User.authenticate(params[:login], params[:password])
+      respond_to do |format|
+        format.html # show.rhtml
+        format.xml  { render :xml => (@user || User.new).to_xml }
+      end
+    else
+      @user = User.find(params[:id])
+      respond_to do |format|
+        format.html # show.rhtml
+        format.xml  { render :xml => @user.to_xml }
+      end
     end
   end
 
