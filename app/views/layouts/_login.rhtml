@@ -1,14 +1,31 @@
+<%- if logged_in? -%>
+
+<div id="members_login_now"> <img src="/img/m_login_t.gif" alt="会員登録をしませんか">
+  <div id="input_area"> 
+    <p><%=h current_user.login %>さんログイン中</p> 
+	<a href="/account/logout">
+	  <img src="/img/logout_btn.gif" alt="ログアウト" height="22" width="77">
+	</a>
+  </div>
+</div>
+	
+<%- else -%>
 <div id="members_login">
-  <form action="" method="post">
+  <form action="/account/login_redirect" method="post">
     <img src="/img/m_logout_t.gif" alt="会員登録をしませんか"/>
 	<img src="/img/entry_btn.gif" alt="会員登録はこちら"/>
-    <div id="input_area"> ID
-      <input name="members_id" id="members_id" type="text"/>
-      PW
-      <input name="members_pw" id="members_pw" type="text"/>
+    <div id="input_area">
+	  <label for="members_id">ID</label>
+      <input name="members[login_id]" id="members_id" type="text"/>
+	  <label for="members_pw">PW</label>
+      <input name="members[pw]" id="members_pw" type="password"/>
       <input src="/img/login_btn.gif" alt="送信" style="vertical-align: bottom;" type="image"/>
-
+	  
+	  <input type="hidden" name="request_from" value="<%=h request.request_uri%>" />
+	  
       <a href="#"><img src="/img/pw_btn.gif" alt="パスワード再発行"/></a> 
 	</div>
   </form>
 </div>
+
+<%- end -%>
