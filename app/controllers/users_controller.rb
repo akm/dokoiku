@@ -1,5 +1,19 @@
+require 'json'
 class UsersController < ApplicationController
   
+  PUBLISHED_FIELDS = [:login, :email, :created_at, :updated_at]
+  DEFAULT_XML_OPTIONS = {:only => PUBLISHED_FIELDS}
+
+  def to_hash(user)
+    if user.is_a?(Array)
+      return user.map{|user|to_hash(user)}
+    elsif user.is_a?(User)
+      {:login => user.login, :email => user.email, :created_at => user.created_at, :updated_at => user.updated_at}
+    else
+      user
+    end
+  end
+    
   # GET /users
   # GET /users.xml
   def index
@@ -7,19 +21,28 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.rhtml
-      format.xml  { render :xml => @users.to_xml }
+      format.xml  { render :xml => @users.to_xml(DEFAULT_XML_OPTIONS) }
+      format.json { render :json => to_hash(@users).to_json}
     end
   end
 
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.rhtml
-      format.xml  { render :xml => @user.to_xml(
-        :except => [:crypted_password, :salt, :remember_token, :remember_token_expires_at]) }
+    if params[:login] and params[:password]
+      @user = User.authenticate(params[:login], params[:password])
+      respond_to do |format|
+        format.html # show.rhtml
+        format.xml  { render :xml => (@user || User.new).to_xml(DEFAULT_XML_OPTIONS)}
+        format.json { render :json => to_hash(@users).to_json}
+      end
+    else
+      @user = User.find(params[:id])
+      respond_to do |format|
+        format.html # show.rhtml
+        format.xml  { render :xml => @user.to_xml(DEFAULT_XML_OPTIONS) }
+        format.json { render :json => to_hash(@user).to_json}
+      end
     end
   end
 
@@ -43,9 +66,11 @@ class UsersController < ApplicationController
         flash[:notice] = 'User was successfully created.'
         format.html { redirect_to user_url(@user) }
         format.xml  { head :created, :location => user_url(@user) }
+        format.json { render :json => to_hash(@user).to_json }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors.to_xml }
+        format.json { render :json => @user.errors.full_messages.to_json }
       end
     end
   end
