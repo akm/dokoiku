@@ -1,16 +1,82 @@
+<div id="adm_header">
+  <div id="adm_header_bx">
+    <h2><img src="img/h_admission.gif" alt="どこ行くと～に会員登録しよう" width="227" height="66" /></h2>
+    <p>どこ行くと～？は、その日の気分を色から選ぶと<br />
+      勝手におススメのコースを決めてくれるサービスです。<br />
+      どこ行くと～？に会員登録して、<br />
+      あなたのお気に入りコースを登録してみませんか？</p>
+    <br class="clears" />
+  </div>
+</div>
+<div id="adm_illust">
+  <% form_for :user do |f| -%>
+    <div id="adm_form">
+      <h2><img src="img/form_title.gif" alt="必要事項を入力してね" width="370" height="55" /></h2>
+      <dl>
+	
+	
+	<p><br/>
+	</p>
+        <dt><label for="user_email">メールアドレス</label></dt>
+        <dd>
+          <%= f.text_field :email, :id => 'adm_email' %>
+        </dd>
+        <dt><label for="adm_id">会員ID</label></dt>
+        <dd>
+          <%= f.text_field :login, :id => "adm_id", :size => 12 %>	
+        </dd>
+        <dt><label for="user_password">パスワード</label></dt>
+        <dd>
+          <%= f.password_field :password, :id => "adm_pw", :size => 8 %>
+          ※半角英数4～12文字 </dd>
+        <dt><label for="user_password_confirmation">パスワード</label></dt>
+        <dd>
+          <%= f.password_field :password_confirmation, :id => "adm_pw2", :size => 8 %>
+                    （確認用）
+		</dd>
+        <dt>性別</dt>
+        <dd>
+          <select name="adm_sex" id="adm_sex">
+            <option>女性</option>
+            <option>男性</option>
+          </select>
+        </dd>
+        <dt>年齢</dt>
+        <dd>
+          <select name="adm_old" id="adm_old">
+            <option>10代</option>
+            <option>20代</option>
+            <option>30代</option>
+            <option>40代</option>
+            <option>50代</option>
+            <option>60代</option>
+          </select>
+        </dd>
+        <dt>住所</dt>
+        <dd>
+          <select name="adm_adr" id="adm_adr">
+            <option>北海道</option>
+          </select>
+        </dd>
+      </dl>
+      <br class="clears" />
+      <div id="adm_btn">
+        <input type="image" src="img/form_btn.gif" alt="会員登録" />
+      </div>
+    </div>
+    <br class="clears" />
+  <% end -%>
+</div>
+
+
+
+
+
 <%= error_messages_for :user %>
-<% form_for :user do |f| -%>
-<p><label for="login">Login</label><br/>
-<%= f.text_field :login %></p>
 
-<p><label for="email">Email</label><br/>
-<%= f.text_field :email %></p>
 
-<p><label for="password">Password</label><br/>
-<%= f.password_field :password %></p>
 
-<p><label for="password_confirmation">Confirm Password</label><br/>
-<%= f.password_field :password_confirmation %></p>
 
-<p><%= submit_tag 'Sign up' %></p>
-<% end -%>
+
+	
+	<p><%= submit_tag 'Sign up' %></p>
