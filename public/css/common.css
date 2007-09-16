@@ -15,14 +15,23 @@ body {
 	background:#fff;
 }
 #header {
-	height:75px;
+	height:68px;
 	background:#f99 url(../img/header.gif) no-repeat bottom left;
 }
 #container {
 	padding:0 15px 5px 15px;
 	position:relative;
 }
-#main_content {
+#members_login, #members_login_now {
+	height:36px;
+	position:relative;
+}
+#members_login {
+	background:url(../img/members_logout.gif) no-repeat 0 0;
+}
+#members_login_now {
+  margin-bottom:15px;
+	background:url(../img/members_login.gif) no-repeat 0 0;
 }
 .left_box {
 	float:left;
@@ -100,7 +109,6 @@ h2#parameter {
 .margin_t10px {
 	margin-top:10px;
 }
-
 #more_cource {
 	text-align:right;
 }
@@ -118,10 +126,145 @@ h2#parameter {
 	text-align:left;
 	background:#fcc;
 }
-#detail table th,  #detail table td {
+#detail table th, #detail table td {
 	padding:5px;
 	border-bottom:1px solid #f99;
 }
 .star_point {
 	color:#f90;
+}
+/* member login */
+#members_login #input_area {
+	top:7px;
+	left:420px;
+	position:absolute;
+}
+#members_login img {
+	vertical-align:middle;
+}
+#members_id, #members_pw {
+	margin:0px 5px 0px 0px;
+	width:60px;
+	height:18px;
+	border:1px solid white;
+}
+
+#members_login_now #input_area p{
+	top:9px;
+	left:260px;
+	position:absolute;
+}
+
+#members_login_now #input_area img {
+	top:7px;
+	right:10px;
+	position:absolute;
+}
+
+/* result */
+#rate {
+	height:30px;
+	margin:15px 0;
+	padding:4px 0 0 150px;
+	background:url(../img/rate.gif) no-repeat 0 0;
+}
+#rate_btn {
+	vertical-align:bottom;
+}
+/* cource */
+#cource_menu {
+	width:200px;
+	float:left;
+	background:#F9EEE8;
+}
+#new_cource_btn {
+	text-align:center;
+	margin:10px auto;
+}
+#cource_menu h2 img {
+	margin:0;
+	padding:0;
+}
+#cource_menu h3 {
+	margin:10px 10px 10px 10px;
+}
+#cource_menu ul {
+	margin:10px;
+}
+#cource_menu ul li {
+	padding:5px 0 0 15px;
+	margin-bottom:10px;
+	border-top:#fcc 1px solid;
+	background:url(../img/list.gif) no-repeat 0em .7em;
+}
+#cource_menu ul li a{
+    font-weight:bold;
+	text-decoration:none;
+	color:#c00;
+}
+#cource_menu ol {
+	margin:10px;
+	padding-left:20px;
+	list-style-type:decimal;
+}
+#cource_menu ol li{
+	margin-bottom:6px;
+}
+#cource_menu hr {
+	border:0px;
+	margin:0;
+	background: url(../img/menu_btm.gif) no-repeat bottom left;
+}
+h3.my_title {
+	padding:5px 0 6px 7px;
+	margin:10px 0 5px 0;
+	background:#fcc;
+	font-weight:bold;
+	color:#c00;
+}
+#cource_input {
+	width:555px;
+	float:right;
+	background:url(../img/input_name.gif) no-repeat 0 0;
+}
+#c_name h2 {
+	display:none;
+}
+#cource_input h2 img {
+	margin-bottom:0;
+}
+#c_name {
+	height:30px;
+	padding:4px 0 0 90px;
+}
+#c_name #cource_name{
+	width:400px;
+	height:18px;
+	border:1px solid #fff;
+}
+#comment_box {
+	border:1px solid #f66;
+	padding:15px;
+}
+#comment_box textarea{
+  width:520px;
+  height:100px;
+  border:1px solid #fff;
+}
+#cource_table table {
+	border-collapse:collapse;
+	width:555px;
+	margin-bottom:15px;
+}
+#cource_table table th {
+	font-weight:normal;
+	text-align:left;
+	background:#fcc;
+}
+#cource_table table th, #cource_table table td {
+	padding:5px;
+	border-bottom:1px solid #f99;
+}
+#cource_btn{
+    margin-top:10px;
 }
