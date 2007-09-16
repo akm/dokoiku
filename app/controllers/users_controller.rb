@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   # GET /users
   # GET /users.xml
   def index
@@ -13,18 +14,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    if params[:login] and params[:password]
-      @user = User.authenticate(params[:login], params[:password])
-      respond_to do |format|
-        format.html # show.rhtml
-        format.xml  { render :xml => (@user || User.new).to_xml }
-      end
-    else
-      @user = User.find(params[:id])
-      respond_to do |format|
-        format.html # show.rhtml
-        format.xml  { render :xml => @user.to_xml }
-      end
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.rhtml
+      format.xml  { render :xml => @user.to_xml(
+        :except => [:crypted_password, :salt, :remember_token, :remember_token_expires_at]) }
     end
   end
 
