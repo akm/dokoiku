@@ -9,6 +9,21 @@ class AccountController < ApplicationController
     redirect_to(:action => 'signup') unless logged_in? || User.count > 0
   end
 
+  def login_redirect
+    return unless request.post?
+    login_member = params[:members]
+    
+    self.current_user = User.authenticate(login_member[:login_id], login_member[:pw])
+    if logged_in?
+      if params[:remember_me] == "1"
+        self.current_user.remember_me
+        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+      end
+      redirect_to params[:request_from]
+      flash[:notice] = "Logged in successfully"
+    end
+  end
+
   def login
     return unless request.post?
     self.current_user = User.authenticate(params[:login], params[:password])
@@ -38,6 +53,6 @@ class AccountController < ApplicationController
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default(:controller => '/account', :action => 'index')
+    redirect_back_or_default(:controller => '/recommend', :action => 'question')
   end
 end
