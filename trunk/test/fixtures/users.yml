@@ -15,3 +15,13 @@ aaron:
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   # activation_code: aaronscode # only if you're activating new signups
   created_at: <%= 1.days.ago.to_s :db %>
+takeshi: 
+  salt: e9a8ddfff6d1fae3c2d6b4bf2c27f254111da582
+  updated_at: 2007-09-17 10:22:14 +09:00
+  crypted_password: d04046ac7d1ed59a1739d15524bb12bea7aeeb3e
+  remember_token_expires_at: 
+  id: 3
+  remember_token: 
+  login: takeshi
+  email: akm2000@gmail.com
+  created_at: 2007-09-17 10:22:14 +09:00
