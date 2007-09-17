@@ -1,4 +1,14 @@
 --- 
+course_00010: 
+  name: !binary |
+    44Kz44O844K55ZCN5YWl5Yqb44Gj44Gm6Z2i5YCS44GP44GV44GE77yf
+
+  updated_at: 2000-01-01 15:59:37 +09:00
+  points: 0
+  creator_id: 3
+  id: 10
+  comment: 
+  created_at: 2000-01-01 15:59:37 +09:00
 course_00007: 
   name: "RBC\xE8\xBF\xBD\xE3\x81\x84\xE8\xBE\xBC\xE3\x81\xBF\xE5\x90\x88\xE5\xAE\xBF"
   updated_at: 2000-01-01 08:48:28 +09:00
@@ -7,3 +17,23 @@ course_00007:
   id: 7
   comment: ""
   created_at: 2000-01-01 08:48:28 +09:00
+course_00008: 
+  name: !binary |
+    44Kz44O844K577yR
+
+  updated_at: 2000-01-01 15:52:55 +09:00
+  points: 0
+  creator_id: 3
+  id: 8
+  comment: 
+  created_at: 2000-01-01 15:52:55 +09:00
+course_00009: 
+  name: !binary |
+    44Kz44O844K55ZCN44KS5YWl44KM44Gm44GP44Gg44GV44GE
+
+  updated_at: 2000-01-01 15:56:16 +09:00
+  points: 0
+  creator_id: 3
+  id: 9
+  comment: 
+  created_at: 2000-01-01 15:56:16 +09:00

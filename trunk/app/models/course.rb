@@ -48,6 +48,40 @@ class Course < ActiveRecord::Base
         entry 5, :budget1, "10,000円以上", :min => 10000
       end
     end
-  end
+    
+    HASH_KEYS = [:start_x, :start_y, :feeling_x, :feeling_y, :purpose_cd, :budget_cd]
+    
+    def to_hash
+      HASH_KEYS.inject({}) do |dest, key|
+        value = self.send(key)
+        dest[key] = value
+        dest
+      end
+    end
+    
+    def to_find_options(options = nil)
+      wheres = []
+      select = "courses.*"
+      if start_x and start_y
+        distance_sqlet = "(first_spot.latitude - #{start_x.to_f}) * (first_spot.latitude - #{start_x.to_f}) + (first_spot.longitude - #{start_y.to_f}) * (first_spot.longitude - #{start_y.to_f})"
+        select << ',' << distance_sqlet << ' distance'
+        # wheres << "#{distance_sqlet} < 0.01"
+      else
+        select << ',0 distance'
+      end
+      joins = ' inner join course_entries first_entry on courses.id = first_entry.course_id' <<
+          ' inner join spots first_spot on first_spot.id = first_entry.spot_id'
+      wheres << " first_entry.line_no = 1"
 
+      result = {
+        :select => select,
+        :conditions => [wheres.join(' and '), self.to_hash],
+        :joins => joins,
+        :order => 'distance asc',
+        :limit => 3
+      }
+    end
+    
+  end
+  
 end
