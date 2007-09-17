@@ -49,17 +49,27 @@
 						<td><%=h column.instance_variable_get(var_name) %></td>
 					<%- end -%>
 					<td>
-						<%- associations_belongs_to.select{|asso|asso[:foreign_key] == column.name}.each do |association| -%>
-							<a href="#<%=h association[:foreign_table] %>">
-								--&gt; <%=h association[:foreign_table] %>
+						<%- association_strs = associations_belongs_to.
+								select{|asso|asso[:foreign_key] == column.name}.
+								map{|asso| asso[:foreign_table] }.uniq -%>
+						<%- association_strs.each do |association_str| -%>
+							<a href="#<%=h association_str %>">
+								--&gt; <%=h association_str %>
 							</a>
 						<%- end -%>
 					</td>
 					<td>
-						<%- validations.select{|validation|validation[:arguments].map(&:to_s).include?(column.name)}.each do |validation| -%>
-							<b><%=h validation[:method_name].gsub(/\Avalidates_/, '').gsub(/_of\z/, '') %></b>
-							<%- if validation[:options] -%>
-								<span class="method_params">(<%=h validation[:options].inspect %>)</span>
+						<%- validation_exps = validations.select{|validation|validation[:arguments].map(&:to_s).include?(column.name)}.
+								map do |validation| 
+									[
+										validation[:method_name].gsub(/\Avalidates_/, '').gsub(/_of\z/, ''), 
+										validation[:options] ? validation[:options].inspect : nil
+									]
+								end -%>
+						<%- validation_exps.uniq.each do |validation_exp| -%>
+							<b><%=h validation_exp[0] %></b>
+							<%- if validation_exp[1] -%>
+								<span class="method_params">(<%=h validation_exp[1] %>)</span>
 							<%- end -%>
 							<br/>
 						<%- end -%>

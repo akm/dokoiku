@@ -69,13 +69,6 @@ class DescModelsController < ActionController::Base
     end
     @models = @models - @db_error_models
 
-    unless params[:table_name_patterns].blank?
-      patterns = params[:table_name_patterns].split(',').map{|str|Regexp.new(str.strip)}
-      @models = @models.select do |model|
-        patterns.any?{|pattern|pattern =~ model.table_name}
-      end
-    end
-    
     # 重複したテーブルを表示してしまう場合(usersとか)があるのでフィルタリング
     models = @models
     @models = []
@@ -88,11 +81,22 @@ class DescModelsController < ActionController::Base
       end
     end
 
+    unless params[:table_name_patterns].blank?
+      patterns = params[:table_name_patterns].split(',').map{|str|Regexp.new(str.strip)}
+      @models = @models.select do |model|
+        patterns.any?{|pattern|pattern =~ model.table_name}
+      end
+    end
+
     @column_variables = @column_variables - IGNORE_COLUMN_VARIABLES
     @column_captions = DEFAULT_COLUMN_CAPTIONS
     render :action => 'list'
   end
   
+  def generate_po
+    render :action => 'generate_po'
+  end
+
   require 'find'
   def reload
     Find.find(File.join(File.dirname(__FILE__), '..', '..', '..', '..', '..', 'app', 'models')) do |file|

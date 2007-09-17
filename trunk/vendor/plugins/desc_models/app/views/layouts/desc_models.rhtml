@@ -42,12 +42,21 @@ body {
 	background-color: white;
 }
 .invisible_in_print { display: none; }
+.menu { margin: 5px; }
 </style>
 
 </head>
 <body>
 
-<%= yield  %>
+<div class="menu">
+	<a href="/desc_models/list">テーブル一覧</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="/desc_models/generate_po">gettext po ファイル生成</a>
+</div>
+
+<div>
+	<%= yield  %>
+</div>
 
 </body>
 </html>
