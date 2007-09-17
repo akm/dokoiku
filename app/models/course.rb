@@ -8,8 +8,12 @@ class Course < ActiveRecord::Base
   def save_with_spots(spots)
     Course.transaction do 
       self.save!
-      spots.each do |spot_hash|
-        Spot.create!(spot_hash.merge(:course_id => self.id))
+      spots.each_with_index do |spot_hash, index|
+        entry = {
+          :course_id => self.id, :line_no => spot_hash.delete(:line_no)
+        }
+        spot = Spot.create!(spot_hash)
+        entry = CourseEntry.create!(entry.merge(:line_no => index + 1, :spot_id => spot.id))
       end
     end
   end
