@@ -30,29 +30,57 @@
 <%- end -%>
 
 </div>
-<div id="result_list">
-  <p class="font_bold font_red">やさしい気持ちに触れたいコース</p>
-  <p>オススメ度　<span class="star_point">★★★★</span></p>
-  <h2 id="other_course">他のオススメコース</h2>
-  <ul>
-    <li><a href="#">和な時間をゆっくり楽しむコース</a><br />
-      オススメ度　<span class="star_point">★★★</span></li>
-    <li><a href="#">緑に触れ合う癒しのコース</a><br />
-      オススメ度　<span class="star_point">★★★</span></li>
-  </ul>
-  <p id="more_course"><a href="#">オススメコース一覧</a></p>
-  <h2 id="parameter">検索条件</h2>
-  <dl>
-    <dt>気分</dt>
-    <dd><span style="display:block; background-image: url(/img/color_table_380_340.png); background-position:<%= 380 - @question.feeling_x.to_i %>px <%= 340 - @question.feeling_y.to_i %>px; width:16px; height:16px;">&nbsp;</span></dd>
-    <dt>目的</dt>
-    <dd>独りで</dd>
-    <dt>予算</dt>
-    <dd>1,000円以下</dd>
-  </dl>
-  <br class="clears" />
-  <a href="/recommend/question"><img src="/img/re_search_btn.gif" alt="条件を変えて検索する" width="176" height="34" class="margin_t10px" /></a>
+<form id="result_form" action="/recommend/result">
+	<input type="hidden" name="result_index" id="result_index"/>
+
+<script type="text/javascript">
+//<![CDATA[
+function click_other_course(result_index){
+	$("result_index").value = result_index;
+	$("result_form").submit();
+}
+//]]>
+</script>
+
+  <div id="result_list">
+    <p class="font_bold font_red"><%=h @course.name %></p>
+    <p>オススメ度　<span class="star_point">★★★★</span></p>
+	  <h2 id="other_course">他のオススメコース</h2>
+	  <ul>
+	  	<%- @courses.each_with_index do |course, index| -%>
+			<%- next if course == @course -%>
+		    <li>
+		    	<a href="javascript:void(0)" class="other_courses" onclick="click_other_course(<%= (index+1).to_s %>); return false;">
+		    		<%=h course.name %>	
+		    	</a>
+			    <br />
+		      	オススメ度　<span class="star_point">★★★</span>
+			</li>
+		<%- end -%>
+	  </ul>
+	  <%# p id="more_course"><a href="#">オススメコース一覧</a></p %>
+	  <h2 id="parameter">検索条件</h2>
+	  <dl>
+	    <dt>気分</dt>
+	    <dd><span style="display:block; background-image: url(/img/color_table_380_340.png); background-position:<%= 380 - @question.feeling_x.to_i %>px <%= 340 - @question.feeling_y.to_i %>px; width:16px; height:16px;">&nbsp;</span></dd>
+	    <dt>目的</dt>
+	    <dd>独りで</dd>
+	    <dt>予算</dt>
+	    <dd>1,000円以下</dd>
+	  </dl>
+	  <%= hidden_field 'question', 'start_x', :id => "question_start_x" %>
+	  <%= hidden_field 'question', 'start_y', :id => "question_start_y" %>
+	  <%= hidden_field 'question', 'feeling_x', :id => "question_feeling_x" %>
+	  <%= hidden_field 'question', 'feeling_y', :id => "question_feeling_y" %>
+	  <%= hidden_field 'question', 'purpose_cd', :id => "question_purpose_cd" %>
+	  <%= hidden_field 'question', 'budget_cd', :id => "question_budget_cd" %>
+  
+    <br class="clears" />
+    <a href="/recommend/question"><img src="/img/re_search_btn.gif" alt="条件を変えて検索する" width="176" height="34" class="margin_t10px" /></a>
   </div>
+  
+ </form> 
+  
 <div id="detail">
   <h2><img src="/img/detail.gif" alt="コースの詳細" width="770" height="28" /></h2>
   <table border="0">
@@ -62,29 +90,13 @@
       <th>連絡先</th>
       <th>予算目安</th>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>店・スポット名</td>
-      <td>092-000-0000</td>
-      <td>～1,000円</td>
-    </tr>
-     <tr>
-      <td>2</td>
-      <td>店・スポット名</td>
-      <td>092-000-0000</td>
-      <td>～1,000円</td>
-    </tr>
-     <tr>
-      <td>3</td>
-      <td>店・スポット名</td>
-      <td>092-000-0000</td>
-      <td>～1,000円</td>
-    </tr>
-     <tr>
-      <td>4</td>
-      <td>店・スポット名</td>
-      <td>092-000-0000</td>
-      <td>～1,000円</td>
-    </tr>
+	<%- @course.entries.each do |entry| -%>
+	    <tr>
+	      <td><%=h entry.line_no %></td>
+	      <td><%=h entry.spot.name %></td>
+	      <td>092-000-0000</td>
+	      <td>～1,000円</td>
+	    </tr>
+	<%- end -%>
   </table>
 </div>
