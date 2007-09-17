@@ -1,0 +1,54 @@
+<%-
+models = []
+ObjectSpace.each_object(Class) do |klass|
+  next if ['CGI::Session::ActiveRecordStore::Session'].include?(klass.name)
+  models << klass if klass < ActiveRecord::Base
+end
+models.uniq!
+models = models.sort_by{|m|m.name}
+
+db_error_models = []
+models.each do |model|
+  begin
+    model.columns
+  rescue
+    db_error_models << model
+  end
+end
+models = models - db_error_models
+
+dup_models = models
+models = []
+dup_models.each do |model|
+  if exist_model = models.detect{|m| m.name == model.name }
+    exist_model.invocations ||= []
+    exist_model.invocations.concat(model.invocations || []).uniq!
+  else
+    models << model
+  end
+end
+models = models.sort_by{|m|m.name}
+-%>
+
+<textarea id="po_area" cols="100" rows="20">
+<%- 
+  models.each do |model|
+-%>	
+# app/models/<%=h model.name.underscore %>.rb:-
+msgid "<%=h model.name.underscore.gsub(/\_/, ' ') %>"
+msgstr "<%=h((model.table_comment || '').gsub(/[\[\(（].*?[\]\)）]/, '').strip) %>"
+<%- 
+   	model.columns.each do |column|
+      next if 'id' == column.name
+-%>	
+# app/models/<%=h model.name.underscore %>.rb:-
+msgid "<%=h model.name %>|<%=h column.name.humanize %>"
+msgstr "<%=h((column.comment || '').gsub(/[\[\(（].*?[\]\)）]/, '').strip) %>"
+<%- 
+    end 
+-%>
+<%- 
+  end 
+-%>
+	
+</textarea>

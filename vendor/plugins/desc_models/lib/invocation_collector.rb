@@ -36,7 +36,7 @@ class ActiveRecord::Base
           klass.hooked_method_names << method_name
           method_definitions << <<-EOS
             def #{method_name}_with_hook_invocation(*args, &proc)
-              invocation = {:class_name => self, :method_name => '#{method_name}', :arguments => args}
+              invocation = {:method_name => '#{method_name}', :arguments => args}
               ActiveRecord::Base::InvocationCollector::Hook.add_invocation(self, invocation)
               #{method_name}_without_hook_invocation(*args, &proc)
             end
