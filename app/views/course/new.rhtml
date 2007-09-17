@@ -93,7 +93,9 @@ function generateInfoWindowContent(spot){
 	result.appendChild(comment_element);
 	return {content: result, name: name_element, comment: comment_element};
 }
-
+function hoge(obj) {
+    if (obj) obj.value = "";
+}
 //]]>
 </script>
 
@@ -102,7 +104,7 @@ function generateInfoWindowContent(spot){
       <form action="" method="post">
         <div id="c_name">
           <h2>コース名</h2>
-          <%= text_field 'course', 'name', :id => 'course_name', :value => "コース名を入れてください" %>
+          <%= text_field 'course', 'name', :id => 'course_name', :value => "コース名を入れてください", :onclick => "javascript:hoge(this);" %>
         </div>
         <div id="course_map">
           <h2><img src="/img/input_map.gif" alt="ルート表示" width="555" height="22" /></h2>

@@ -1,0 +1,43 @@
+<style type="text/css" media="screen" rel="Stylesheet"><!--
+#id_mypage {
+	display:none
+}
+--></style>
+    <div id="member_profile">
+      <h2><%=h current_user.login %>さんの<br />
+        プロフィール</h2>
+      <p class="text_center margin_t10px">
+      <%- if current_user.sex == 1 -%>
+        <img src="/img/male.gif" alt="男性" width="125" height="149" />
+      <%- else -%>
+        <img src="/img/female.gif" alt="女性" width="125" height="149" />
+      <%- end -%>
+      </p>
+      <dl>
+        <dt>性別</dt>
+        <dd><%=h current_user.sex_name %></dd>
+        <dt>年齢</dt>
+        <dd><%=h current_user.age_name %></dd>
+        <dt>現住所</dt>
+        <dd><%=h current_user.address_name %></dd>
+      </dl>
+      <br class="clears" />
+      <hr />
+    </div>
+    <div id="member_course">
+      <h2><img src="/img/h_course.gif" alt="作成したコース名" width="540" height="35" /></h2>
+    	<ol>
+    	<%- current_user.courses.each do |course|  -%>
+    		
+    		<%- if @course && (@course.id == course.id) -%>
+    			<h3><%= h course.name %>
+    			なコース</h3>
+    			<br/>
+    			<li><%=  render :partial => 'course/ajax_spots' %></li>
+    		<%- else -%>
+    			<%= link_to "#{course.name}", :controller => 'course', :action => 'choice', :id => course.id %><br>
+    		<%- end -%>
+    	<%- end -%>
+    	</ol>
+    </div>
+    <br class="clears" />
