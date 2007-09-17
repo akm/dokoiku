@@ -1,60 +1,90 @@
-    <h2><img src="/img/result.gif" alt="あなたにオススメのコースはこちら" width="770" height="28" /></h2>
-    <div id="map"> <img src="/img/map2_dammy.gif" alt="googlemap" width="580" height="380" /> </div>
-    <div id="result_list">
-      <p class="font_bold font_red">やさしい気持ちに触れたいコース</p>
-      <p>オススメ度　<span class="star_point">★★★★</span></p>
-      <h2 id="other_course">他のオススメコース</h2>
-      <ul>
-        <li><a href="#">和な時間をゆっくり楽しむコース</a><br />
-          オススメ度　<span class="star_point">★★★</span></li>
-        <li><a href="#">緑に触れ合う癒しのコース</a><br />
-          オススメ度　<span class="star_point">★★★</span></li>
-      </ul>
-      <p id="more_course"><a href="#">オススメコース一覧</a></p>
-      <h2 id="parameter">検索条件</h2>
-      <dl>
-        <dt>気分</dt>
-        <dd><span style="display:block; background-image: url(/img/color_table_380_340.png); background-position:<%= 380 - @question.feeling_x.to_i %>px <%= 340 - @question.feeling_y.to_i %>px; width:16px; height:16px;">&nbsp;</span></dd>
-        <dt>目的</dt>
-        <dd>独りで</dd>
-        <dt>予算</dt>
-        <dd>1,000円以下</dd>
-      </dl>
-      <br class="clears" />
-      <a href="/recommend/question"><img src="/img/re_search_btn.gif" alt="条件を変えて検索する" width="176" height="34" class="margin_t10px" /></a>
-      </div>
-    <div id="detail">
-      <h2><img src="/img/detail.gif" alt="コースの詳細" width="770" height="28" /></h2>
-      <table border="0">
-        <tr>
-          <th>順路</th>
-          <th>目的地</th>
-          <th>連絡先</th>
-          <th>予算目安</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>店・スポット名</td>
-          <td>092-000-0000</td>
-          <td>～1,000円</td>
-        </tr>
-         <tr>
-          <td>2</td>
-          <td>店・スポット名</td>
-          <td>092-000-0000</td>
-          <td>～1,000円</td>
-        </tr>
-         <tr>
-          <td>3</td>
-          <td>店・スポット名</td>
-          <td>092-000-0000</td>
-          <td>～1,000円</td>
-        </tr>
-         <tr>
-          <td>4</td>
-          <td>店・スポット名</td>
-          <td>092-000-0000</td>
-          <td>～1,000円</td>
-        </tr>
-      </table>
-    </div>
+<h2><img src="/img/result.gif" alt="あなたにオススメのコースはこちら" width="770" height="28" /></h2>
+<div id="map"> 
+
+<%- map = GoogleMap.new -%>
+<%- if @course -%>
+<%- 
+	@course.spots.each_with_index do |spot, index| 
+		map.markers << GoogleMapMarker.new(
+			:map => map, 
+			:lat => spot.latitude.to_f, 
+			:lng => spot.longitude.to_f,
+			:html => (render :partial => 'course/inside_baloon', :locals => {:spot => spot }),
+			:icon => GoogleMapIcon.new(
+				:image_url => "/img/icon/pt" + (index + 1).to_s + ".gif", 
+				:width => 38, :height => 53, :anchor_x => 18, :anchor_y => 50,
+				:shadow_width => 37, :shadow_height => 50))
+	end
+	if map.markers.empty?
+		map.markers << GoogleMapMarker.new(:map => map, 
+	                                   :lat => 32.74207489599587, 
+	                                   :lng => 129.87160563468933,
+	                                   :html => '')
+	end
+-%>
+
+  <%= map.to_html %>
+  <div style="width: 580px; height: 380px;">
+    <%= map.div %>
+  </div>
+<%- end -%>
+
+</div>
+<div id="result_list">
+  <p class="font_bold font_red">やさしい気持ちに触れたいコース</p>
+  <p>オススメ度　<span class="star_point">★★★★</span></p>
+  <h2 id="other_course">他のオススメコース</h2>
+  <ul>
+    <li><a href="#">和な時間をゆっくり楽しむコース</a><br />
+      オススメ度　<span class="star_point">★★★</span></li>
+    <li><a href="#">緑に触れ合う癒しのコース</a><br />
+      オススメ度　<span class="star_point">★★★</span></li>
+  </ul>
+  <p id="more_course"><a href="#">オススメコース一覧</a></p>
+  <h2 id="parameter">検索条件</h2>
+  <dl>
+    <dt>気分</dt>
+    <dd><span style="display:block; background-image: url(/img/color_table_380_340.png); background-position:<%= 380 - @question.feeling_x.to_i %>px <%= 340 - @question.feeling_y.to_i %>px; width:16px; height:16px;">&nbsp;</span></dd>
+    <dt>目的</dt>
+    <dd>独りで</dd>
+    <dt>予算</dt>
+    <dd>1,000円以下</dd>
+  </dl>
+  <br class="clears" />
+  <a href="/recommend/question"><img src="/img/re_search_btn.gif" alt="条件を変えて検索する" width="176" height="34" class="margin_t10px" /></a>
+  </div>
+<div id="detail">
+  <h2><img src="/img/detail.gif" alt="コースの詳細" width="770" height="28" /></h2>
+  <table border="0">
+    <tr>
+      <th>順路</th>
+      <th>目的地</th>
+      <th>連絡先</th>
+      <th>予算目安</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>店・スポット名</td>
+      <td>092-000-0000</td>
+      <td>～1,000円</td>
+    </tr>
+     <tr>
+      <td>2</td>
+      <td>店・スポット名</td>
+      <td>092-000-0000</td>
+      <td>～1,000円</td>
+    </tr>
+     <tr>
+      <td>3</td>
+      <td>店・スポット名</td>
+      <td>092-000-0000</td>
+      <td>～1,000円</td>
+    </tr>
+     <tr>
+      <td>4</td>
+      <td>店・スポット名</td>
+      <td>092-000-0000</td>
+      <td>～1,000円</td>
+    </tr>
+  </table>
+</div>

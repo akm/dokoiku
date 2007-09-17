@@ -4,10 +4,11 @@
 <%- 
 	spots = current_user.courses.empty? ? [] : current_user.courses.first.spots
 	spots.each do |spot|
-		map.markers << GoogleMapMarker.new(:map => map, 
-	                                   :lat => spot.latitude.to_f, 
-	                                   :lng => spot.longitude.to_f,
-	                                   :html => (render :partial => 'inside_baloon', :locals => {:spot => spot }))
+		map.markers << GoogleMapMarker.new(
+			:map => map, 
+			:lat => spot.latitude.to_f, 
+			:lng => spot.longitude.to_f,
+			:html => (render :partial => 'inside_baloon', :locals => {:spot => spot }))
 	end
 	if map.markers.empty?
 		map.markers << GoogleMapMarker.new(:map => map, 
