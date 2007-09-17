@@ -155,10 +155,13 @@ h2#parameter {
 	position:absolute;
 }
 
-#members_login_now #input_area img {
+#members_login_now #input_area #input_btn {
 	top:7px;
-	right:10px;
+	left:590px;
 	position:absolute;
+}
+#members_login_now #input_area img {
+	margin-right:5px;
 }
 
 /* result */
@@ -267,4 +270,51 @@ h3.my_title {
 }
 #cource_btn{
     margin-top:10px;
+}
+/* mypage */
+#member_profile{
+  float:left;
+  width:210px;
+  background:url(../img/profile_bg.gif) repeat-y 0 0;
+}
+#member_course{
+  float:right;
+  width:540px;
+}
+#member_profile h2{
+  text-align:center;
+  color:#f33;
+  padding:15px 0 0 0;
+  background:url(../img/profile_top.gif) no-repeat 0 0;
+}
+#member_profile dl{
+  margin:5px 0 0 15px;
+}
+#member_profile dl dt{
+  float:left;
+  width:80px;
+}
+#member_profile dl dd{
+  float:left;
+  width:100px;
+}
+#member_profile hr{
+	border:0px;
+	margin:0;
+	height:15px;
+	background: url(../img/profile_btm.gif) no-repeat bottom left;
+}
+#member_course h2{
+
+}
+#member_course h3{
+  padding:5px 0 5px 15px;
+  background:url(../img/h_course2.gif) no-repeat 0 0;
+}
+#member_course ol{
+  list-style-type:decimal;
+  margin:10px 0 0 30px;
+}
+#member_course ol li{
+  padding:0 0 5px 0;
 }
