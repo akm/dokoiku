@@ -92,8 +92,18 @@ function click_other_course(result_index){
     </tr>
 	<%- @course.entries.each do |entry| -%>
 	    <tr>
-	      <td><%=h entry.line_no %></td>
-	      <td><%=h entry.spot.name %></td>
+	      <td>
+			<a href="javascript:void(0)" 
+				onclick="google_map.panTo(new GLatLng(<%=h entry.spot.latitude %>, <%=h entry.spot.longitude %>));">
+			  <%=h entry.line_no %>
+			</a>
+		  </td>
+	      <td>
+			<a href="javascript:void(0)" 
+				onclick="google_map.panTo(new GLatLng(<%=h entry.spot.latitude %>, <%=h entry.spot.longitude %>));">
+	      	<%=h entry.spot.name %>
+			</a>
+		  </td>
 	      <td>092-000-0000</td>
 	      <td>～1,000円</td>
 	    </tr>
