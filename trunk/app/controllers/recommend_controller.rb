@@ -5,24 +5,16 @@ class RecommendController < ApplicationController
   end
 
   def question
-    if request.get?
-      @question = Course::Finder.new(
-        :start_y => '32.74207489599587', :start_x => '129.87160563468933')
-      render :action => 'question'
-    else
-      @question = Course::Finder.new(params[:question])
-      @courses = Course.find(:all, @question.to_find_options)
-      
-      @courses.each do |c|
-        logger.debug( "id: #{c.id}, distance: #{c.distance}" )
-      end
-      
-      @course = @courses.first
-      render :action => 'result'
-    end
+    @question = Course::Finder.new(
+      :start_y => '32.74207489599587', :start_x => '129.87160563468933')
+    render :action => 'question'
   end
 
   def result
-    
+    @question = Course::Finder.new(params[:question])
+    @courses = Course.find(:all, @question.to_find_options)
+    index = (params[:result_index] || 1).to_i - 1
+    @course = (index < @courses.length) ? @courses[index] : @courses.first
+    render :action => 'result'
   end
 end
