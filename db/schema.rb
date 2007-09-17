@@ -22,11 +22,10 @@ ActiveRecord::Schema.define(:version => 4) do
   create_table "spots", :force => true do |t|
     t.column "latitude",   :float
     t.column "longitude",  :float
-    t.column "name",       :string,  :limit => 200
+    t.column "name",       :string, :limit => 200
     t.column "comment",    :text
     t.column "created_at", :time
     t.column "updated_at", :time
-    t.column "spot_id",    :integer
   end
 
   create_table "users", :force => true do |t|
