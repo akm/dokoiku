@@ -44,6 +44,12 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 end
 
+ActionView::Base.field_error_proc = Proc.new{|html_tag, instance|
+#  "<span class=\"fieldWithErrors\">#{html_tag}</span>"
+  html_tag
+}
+
+
 # Add new inflection rules using the following format 
 # (all these examples are active by default):
 # Inflector.inflections do |inflect|
