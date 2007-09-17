@@ -2,8 +2,8 @@ class Course < ActiveRecord::Base
   
   belongs_to :creator, :class_name => 'User', :foreign_key => 'creator_id'
 
-  has_many :spots
-
+  has_many :entries, :foreign_key => 'course_id', :class_name => 'CourseEntry'
+  has_many :spots, :through => :entries
 
   def save_with_spots(spots)
     Course.transaction do 
