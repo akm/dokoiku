@@ -1,29 +1,23 @@
 <%- if current_user != :false -%>
 	<div id="course_menu">
-	<h2><img src="/img/your_course.gif" alt="あなたの登録コース一覧" width="200" height="28" /></h2>
-	<h3 class="my_title">新規登録コース名</h3>
-	<ol>
-	<%- current_user.courses.each do |course|  -%>
-		<li>
-		<%- if @course && (@course.id == course.id) -%>
-			●<%= h course.name %>
-			<br/>
-			<%=  render :partial => 'course/ajax_spots' %>
-		<%- else -%>
-			<%= link_to "●#{course.name}", :controller => 'course', :action => 'choice', :id => course.id %>
-		<%- end -%>
-		</li>
-	<%- end -%>
-	</ol>
-	
-	<br/><br/><br/>
-	<div id="new_course_btn"><%= link_image_to "/img/new_course_btn.gif", :controller => "course", :action => "new", :width => "163", :height => "46" %></div>
-	<ul>
-        <li><a href="#">和な時間をゆっくり楽しむコース</a><br />
-          オススメ度　<span class="star_point">★★★</span></li>
-        <li><a href="#">和な時間をゆっくり楽しむコース</a><br />
-          オススメ度　<span class="star_point">★★★</span></li>
-    </ul>
-     <hr />
-     </div>
+    	<h2><img src="/img/your_course.gif" alt="あなたの登録コース一覧" width="200" height="28" /></h2>
+    	<div id="new_course_btn"><%= link_image_to "/img/new_course_btn.gif", :controller => "course", :action => "new", :width => "163", :height => "46" %></div>
+    	<ul>
+    	<%- current_user.courses.each do |course|  -%>
+    		<li>
+    		<%- if @course && (@course.id == course.id) -%>
+    			<b><%= h course.name %>
+    			<br/>
+    			コース</b>
+    			<br/>
+    			<%=  render :partial => 'course/ajax_spots' %>
+    		<%- else -%>
+    			<%= link_to "#{course.name}", :controller => 'course', :action => 'choice', :id => course.id %><br>
+    		<%- end -%>
+    		オススメ度　<span class="star_point">★★★★★</span>
+    		</li>
+    	<%- end -%>
+    	</ul>
+    	<hr />
+    </div>
 <%- end -%>

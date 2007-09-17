@@ -2,10 +2,11 @@
 
 <div id="members_login_now"> <img src="/img/m_login_t.gif" alt="会員登録をしませんか">
   <div id="input_area"> 
-    <p><%=h current_user.login %>さんログイン中</p> 
-	<a href="/account/logout">
-	  <img src="/img/logout_btn.gif" alt="ログアウト" height="22" width="77">
-	</a>
+    <p><%=h current_user.login %>さんログイン中</p>
+      <div id="input_btn">
+	    <span id="id_mypage"><a href="/account/mypage"><img src="/img/mypg_btn.gif" alt="MyPage" width="78" height="24" /></a></span>
+	    <span id="id_logout"><a href="/account/logout"><img src="/img/logout_btn.gif" alt="ログアウト" width="77" height="22" /></a></span>
+      </div>
   </div>
 </div>
 	
