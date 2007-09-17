@@ -11,10 +11,18 @@ class RecommendController < ApplicationController
       render :action => 'question'
     else
       @question = Course::Finder.new(params[:question])
+      @courses = Course.find(:all, @question.to_find_options)
+      
+      @courses.each do |c|
+        logger.debug( "id: #{c.id}, distance: #{c.distance}" )
+      end
+      
+      @course = @courses.first
       render :action => 'result'
     end
   end
 
   def result
+    
   end
 end

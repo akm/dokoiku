@@ -1,11 +1,16 @@
 <%- map = GoogleMap.new -%>
 <%- if @course -%>
 <%- 
-	@course.spots.each do |spot| 
-		map.markers << GoogleMapMarker.new(:map => map, 
-	                                   :lat => spot.latitude.to_f, 
-	                                   :lng => spot.longitude.to_f,
-	                                   :html => (render :partial => 'inside_baloon', :locals => {:spot => spot }))
+	@course.spots.each_with_index do |spot, index| 
+		map.markers << GoogleMapMarker.new(
+			:map => map, 
+			:lat => spot.latitude.to_f, 
+			:lng => spot.longitude.to_f,
+			:html => (render :partial => 'inside_baloon', :locals => {:spot => spot }),
+			:icon => GoogleMapIcon.new(
+				:image_url => "/img/icon/pt" + (index + 1).to_s + ".gif", 
+				:width => 38, :height => 53, :anchor_x => 18, :anchor_y => 50,
+				:shadow_width => 37, :shadow_height => 50))
 	end
 	if map.markers.empty?
 		map.markers << GoogleMapMarker.new(:map => map, 

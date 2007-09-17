@@ -63,7 +63,7 @@ class Course < ActiveRecord::Base
       wheres = []
       select = "courses.*"
       if start_x and start_y
-        distance_sqlet = "(first_spot.latitude - #{start_x.to_f}) * (first_spot.latitude - #{start_x.to_f}) + (first_spot.longitude - #{start_y.to_f}) * (first_spot.longitude - #{start_y.to_f})"
+        distance_sqlet = "(first_spot.latitude - #{start_y.to_f}) * (first_spot.latitude - #{start_y.to_f}) + (first_spot.longitude - #{start_x.to_f}) * (first_spot.longitude - #{start_x.to_f})"
         select << ',' << distance_sqlet << ' distance'
         # wheres << "#{distance_sqlet} < 0.01"
       else
