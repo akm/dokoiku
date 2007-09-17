@@ -17,7 +17,7 @@
 	
 	<p><br/>
 	</p>
-        <dt><label for="user_email">メールアドレス</label></dt>
+        <dt><label for="adm_email">メールアドレス</label></dt>
         <dd>
           <%= f.text_field :email, :id => 'adm_email' %>
         </dd>
@@ -25,38 +25,30 @@
         <dd>
           <%= f.text_field :login, :id => "adm_id", :size => 12 %>	
         </dd>
-        <dt><label for="user_password">パスワード</label></dt>
+        <dt><label for="adm_name">名前</label></dt>
         <dd>
-          <%= f.password_field :password, :id => "adm_pw", :size => 8 %>
+          <%= f.text_field :name, :id => 'adm_name', :size => 12 %>
+        </dd>
+        <dt><label for="adm_pw">パスワード</label></dt>
+        <dd>
+          <%= f.password_field :password, :id => "adm_pw", :size => 8, :maxlength => 12 %>
           ※半角英数4～12文字 </dd>
-        <dt><label for="user_password_confirmation">パスワード</label></dt>
+        <dt><label for="adm_pw2">パスワード</label></dt>
         <dd>
-          <%= f.password_field :password_confirmation, :id => "adm_pw2", :size => 8 %>
+          <%= f.password_field :password_confirmation, :id => "adm_pw2", :size => 8, :maxlength => 12 %>
                     （確認用）
 		</dd>
         <dt>性別</dt>
         <dd>
-          <select name="adm_sex" id="adm_sex">
-            <option>女性</option>
-            <option>男性</option>
-          </select>
+          <%= f.select("sex", User::UserAttribute.sex_options ) %>
         </dd>
         <dt>年齢</dt>
         <dd>
-          <select name="adm_old" id="adm_old">
-            <option>10代</option>
-            <option>20代</option>
-            <option>30代</option>
-            <option>40代</option>
-            <option>50代</option>
-            <option>60代</option>
-          </select>
+          <%= f.select("age", User::UserAttribute.age_options ) %>
         </dd>
         <dt>住所</dt>
         <dd>
-          <select name="adm_adr" id="adm_adr">
-            <option>北海道</option>
-          </select>
+          <%= f.select("address", User::UserAttribute.address_options ) %>
         </dd>
       </dl>
       <br class="clears" />
