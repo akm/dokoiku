@@ -43,13 +43,13 @@ function showAddress(address) {
   if (geocoder) {
     geocoder.getLatLng(
       address,
-      function(point) {
-        if (!point) {
+      function(result) {
+        if (!result) {
           alert(address + " が見つかりませんでした。");
         } else {
-          google_map.setCenter(point, 16);
+          google_map.setCenter(result, 16);
           google_map.addOverlay(google_map_marker_1);
-          google_map_marker_1.setPoint(point);
+          google_map_marker_1.setPoint(result);
           google_map_marker_1.openInfoWindowHtml(address + "だよ！");
 //          var marker = new GMarker(point);
 //          google_map.addOverlay(marker);
