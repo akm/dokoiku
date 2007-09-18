@@ -1,4 +1,3 @@
-    <form action="/recommend/result" method="post">
       <div class="left_box">
         <h2><img src="/img/select1.gif" alt="出発地を選んでください" width="380" height="30" /></h2>
         <div>
@@ -6,7 +5,7 @@
           <input type="button" value="Go!" onclick="showAddress($F('address'))" />
           <p>例：長崎 出島町</p>
         </div>
-	    <form action="" method="post">
+        <form action="/recommend/result" method="post">
 		  <%= hidden_field 'question', 'start_x', :id => "question_start_x" %>
 		  <%= hidden_field 'question', 'start_y', :id => "question_start_y" %>
 <%- map = GoogleMap.new -%>
