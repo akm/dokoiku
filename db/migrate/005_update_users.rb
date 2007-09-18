@@ -4,7 +4,7 @@ class UpdateUsers < ActiveRecord::Migration
     add_column 'users', 'name',     :string
     add_column 'users', 'sex',      :integer
     add_column 'users', 'age',      :integer
-    add_column 'users', 'address',  :string
+    add_column 'users', 'address',  :integer
   end
   
   def self.down
