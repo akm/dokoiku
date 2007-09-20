@@ -160,6 +160,7 @@ h2#parameter {
 	top:7px;
 	left:590px;
 	position:absolute;
+	text-align:right;
 }
 #members_login_now #input_area img {
 	margin-right:5px;
@@ -322,4 +323,7 @@ h3.my_title {
 }
 #member_course ol li{
   padding:0 0 5px 0;
+}
+#id_mypage {
+	display:none;
 }
