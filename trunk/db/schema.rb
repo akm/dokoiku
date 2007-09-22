@@ -10,6 +10,14 @@ ActiveRecord::Schema.define(:version => 6) do
     t.column "spot_id",   :integer
   end
 
+  create_table "course_ratings", :force => true do |t|
+    t.column "user_id",    :integer, :default => 0, :null => false
+    t.column "course_id",  :integer, :default => 0, :null => false
+    t.column "rating",     :integer, :default => 0, :null => false
+    t.column "created_at", :time
+    t.column "updated_at", :time
+  end
+
   create_table "courses", :force => true do |t|
     t.column "name",       :string,  :limit => 200
     t.column "comment",    :text

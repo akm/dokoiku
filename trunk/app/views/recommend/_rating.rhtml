@@ -1,0 +1,17 @@
+<div id="rate">
+  <%- if @rating -%>
+	<form id="rating_form" method="post">
+		<%- (1..5).each do |idx| -%>
+	      <%= radio_button("rating", "rating", idx.to_s)%><label for="rating_rating_<%=h idx%>"><%=h idx%>つ</label>&nbsp;
+		<%- end -%>
+	  <input type="hidden" name="rating[course_id]" value="<%=h @rating.course_id %>" />
+      <%= link_to_remote '<img src="/img/rate_btn.gif" alt="評価する" id="rate_btn" />', 
+			:update => "rate_container",
+			:submit => "rating_form",
+	    	:url => {:action => "ajax_post_rating", :id => @rating.id}
+		%>
+    </form>
+  <%- else -%>
+	このコースを評価するにはログインしてください。
+  <%- end -%>
+</div>

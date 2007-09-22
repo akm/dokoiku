@@ -18,6 +18,11 @@ body {
 	height:68px;
 	background:#f99 url(../img/header.gif) no-repeat bottom left;
 }
+#help_btn{
+	top:27px;
+	right:10px;
+	position:absolute;
+}
 #container {
 	padding:0 15px 5px 15px;
 	position:relative;
@@ -28,7 +33,6 @@ body {
 }
 #members_login {
 	background:url(../img/members_logout.gif) no-repeat 0 0;
-	position:relative;
 }
 #members_login_now {
   margin-bottom:15px;
@@ -48,6 +52,7 @@ body {
 	text-align:center;
 	background:#f99 url(../img/footer.gif) no-repeat 0 0;
 }
+
 /* result*/
 #map {
 	float:left;
@@ -158,12 +163,11 @@ h2#parameter {
 
 #members_login_now #input_area #input_btn {
 	top:7px;
-	right:10px;
+	left:500px;
 	position:absolute;
-	text-align:right;
 }
 #members_login_now #input_area img {
-	margin-right:1px;
+	margin-right:5px;
 }
 
 /* result */
@@ -202,7 +206,7 @@ h2#parameter {
 	border-top:#fcc 1px solid;
 	background:url(../img/list.gif) no-repeat 0em .7em;
 }
-#course_menu ul li b{
+#course_menu ul li a{
     font-weight:bold;
 	text-decoration:none;
 	color:#c00;
@@ -232,14 +236,10 @@ h3.my_title {
 	float:right;
 	background:url(../img/input_name.gif) no-repeat 0 0;
 }
-#course_output {
-	width:555px;
-	float:right;
-}
 #c_name h2 {
 	display:none;
 }
-#course_input h2 img, #course_output h2 img {
+#course_input h2 img {
 	margin-bottom:0;
 }
 #c_name {
@@ -323,9 +323,6 @@ h3.my_title {
 }
 #member_course ol li{
   padding:0 0 5px 0;
-}
-#id_mypage {
-	/*display:none;*/
 }
 /* edit profile */
 #edit_profile_bg{
