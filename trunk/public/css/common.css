@@ -327,3 +327,58 @@ h3.my_title {
 #id_mypage {
 	/*display:none;*/
 }
+/* edit profile */
+#edit_profile_bg{
+  background:url(../img/edit_prf_top.gif) no-repeat 0 0;
+  width:770px;
+  margin:10px auto;
+  padding-top:15px;
+}
+#edit_profile_box{
+  padding:15px;
+  background:url(../img/edit_prf_bg.gif) repeat-y 0 0;
+}
+#edit_profile_box h2{
+  float:left;
+  width:220px;
+}
+#edit_profile_box #edit_form{
+  float:right;
+  width:520px;
+}
+dl#edit_form_left{
+  float:left;
+  width:300px;
+}
+dl#edit_form_right{
+  float:right;
+  width:200px;
+}
+#edit_fix_btn{
+  text-align:center;
+  background:url(../img/edit_prf_btm.gif) no-repeat bottom left;
+}
+#edit_fix_btn input{
+  margin-bottom:15px;
+}
+/* resign */
+#howto_resign{
+
+}
+#howto_resign h2{
+  float:left;
+  width:200px;
+}
+#resign_contents{
+  float:right;
+  width:520px;
+}
+#resign_text{
+  background:#fdd url(../img/resign_box_top.gif) no-repeat 0 0;
+  padding-top:10px;
+  margin-bottom:15px;
+}
+#resign_text p{
+  padding:0 0 10px 10px;
+  background:#fdd url(../img/resign_box_btm.gif) no-repeat bottom left;
+}
