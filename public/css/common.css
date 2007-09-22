@@ -158,12 +158,12 @@ h2#parameter {
 
 #members_login_now #input_area #input_btn {
 	top:7px;
-	left:590px;
+	right:10px;
 	position:absolute;
 	text-align:right;
 }
 #members_login_now #input_area img {
-	margin-right:5px;
+	margin-right:1px;
 }
 
 /* result */
@@ -325,5 +325,5 @@ h3.my_title {
   padding:0 0 5px 0;
 }
 #id_mypage {
-	display:none;
+	/*display:none;*/
 }
