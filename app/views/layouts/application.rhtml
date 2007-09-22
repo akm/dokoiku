@@ -8,6 +8,8 @@
 <![endif]-->
 <link rel="stylesheet" type="text/css" href="/css/top.css" />
 <link rel="stylesheet" type="text/css" href="/css/admission.css" />
+<link rel="stylesheet" type="text/css" href="/css/redbox.css" />
+
 <style type="text/css" media="screen" rel="Stylesheet"><!--
 .user_header {
 	
@@ -24,6 +26,7 @@ li.menu{
 --></style>
 
 	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_tag 'redbox' %>
   </head>
    <body id="top">
 	
@@ -41,6 +44,7 @@ li.menu{
   </div>
 </div>
 
+	<%= render :partial => 'layouts/errors' %>
   </body>
 
 </html>
