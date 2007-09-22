@@ -18,115 +18,123 @@ msgstr ""
 
 #: app/models/course.rb:-
 msgid "course"
-msgstr ""
+msgstr "コース"
 
 #: app/models/course.rb:-
 msgid "Course|Name"
-msgstr ""
+msgstr "コース名"
 
 #: app/models/course.rb:-
 msgid "Course|Comment"
-msgstr ""
+msgstr "コメント"
 
 #: app/models/course.rb:-
 msgid "Course|Points"
-msgstr ""
+msgstr "ポイント"
 
 #: app/models/course.rb:-
 msgid "Course|Creator"
-msgstr ""
+msgstr "作成者"
 
 #: app/models/course.rb:-
 msgid "Course|Created at"
-msgstr ""
+msgstr "作成日時"
 
 #: app/models/course.rb:-
 msgid "Course|Updated at"
-msgstr ""
+msgstr "更新日時"
 
 #: app/models/course_entry.rb:-
 msgid "course entry"
-msgstr ""
+msgstr "コースのエントリ"
 
 #: app/models/course_entry.rb:-
 msgid "CourseEntry|Course"
-msgstr ""
+msgstr "コース"
 
 #: app/models/course_entry.rb:-
 msgid "CourseEntry|Line no"
-msgstr ""
+msgstr "番号"
 
 #: app/models/course_entry.rb:-
 msgid "CourseEntry|Spot"
-msgstr ""
+msgstr "スポット"
 
 #: app/models/course_rating.rb:-
 msgid "course rating"
-msgstr ""
+msgstr "コース評価"
 
 #: app/models/course_rating.rb:-
 msgid "CourseRating|User"
-msgstr ""
+msgstr "評価ユーザ"
 
 #: app/models/course_rating.rb:-
 msgid "CourseRating|Course"
-msgstr ""
+msgstr "コース"
 
 #: app/models/course_rating.rb:-
 msgid "CourseRating|Rating"
-msgstr ""
+msgstr "評価"
 
 #: app/models/course_rating.rb:-
 msgid "CourseRating|Created at"
-msgstr ""
+msgstr "登録日時"
 
 #: app/models/course_rating.rb:-
 msgid "CourseRating|Updated at"
-msgstr ""
+msgstr "更新日時"
 
 #: app/models/spot.rb:-
 msgid "spot"
-msgstr ""
+msgstr "スポット"
 
 #: app/models/spot.rb:-
 msgid "Spot|Latitude"
-msgstr ""
+msgstr "緯度"
 
 #: app/models/spot.rb:-
 msgid "Spot|Longitude"
-msgstr ""
+msgstr "経度"
 
 #: app/models/spot.rb:-
 msgid "Spot|Name"
-msgstr ""
+msgstr "スポット名"
 
 #: app/models/spot.rb:-
 msgid "Spot|Comment"
-msgstr ""
+msgstr "コメント"
 
 #: app/models/spot.rb:-
 msgid "Spot|Created at"
-msgstr ""
+msgstr "登録日時"
 
 #: app/models/spot.rb:-
 msgid "Spot|Updated at"
-msgstr ""
+msgstr "更新日時"
 
 #: app/models/user.rb:-
 msgid "user"
-msgstr ""
+msgstr "ユーザ"
 
 #: app/models/user.rb:-
 msgid "User|Login"
-msgstr ""
+msgstr "ユーザID"
 
 #: app/models/user.rb:-
 msgid "User|Email"
-msgstr ""
+msgstr "メールアドレス"
+
+#: app/models/user.rb:-
+msgid "User|password"
+msgstr "パスワード"
+
+#: app/models/user.rb:-
+msgid "User|Password confirmation"
+msgstr "パスワード(確認)"
 
 #: app/models/user.rb:-
 msgid "User|Crypted password"
-msgstr ""
+msgstr "暗号化されたパスワード"
 
 #: app/models/user.rb:-
 msgid "User|Salt"
@@ -134,32 +142,32 @@ msgstr ""
 
 #: app/models/user.rb:-
 msgid "User|Created at"
-msgstr ""
+msgstr "登録日時"
 
 #: app/models/user.rb:-
 msgid "User|Updated at"
-msgstr ""
+msgstr "更新日時"
 
 #: app/models/user.rb:-
 msgid "User|Remember token"
-msgstr ""
+msgstr "自動ログイントークン"
 
 #: app/models/user.rb:-
 msgid "User|Remember token expires at"
-msgstr ""
+msgstr "自動ログイン有効期限"
 
 #: app/models/user.rb:-
 msgid "User|Name"
-msgstr ""
+msgstr "ユーザ名"
 
 #: app/models/user.rb:-
 msgid "User|Sex"
-msgstr ""
+msgstr "性別"
 
 #: app/models/user.rb:-
 msgid "User|Age"
-msgstr ""
+msgstr "年齢"
 
 #: app/models/user.rb:-
 msgid "User|Address"
-msgstr ""
+msgstr "住所"

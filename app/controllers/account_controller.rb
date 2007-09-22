@@ -19,9 +19,9 @@ class AccountController < ApplicationController
         self.current_user.remember_me
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
-      redirect_to params[:request_from]
       flash[:notice] = "Logged in successfully"
     end
+    redirect_to params[:request_from]
   end
 
   def login
