@@ -1,10 +1,10 @@
+<a href="/desc_models/reload">reload models</a>
 <div class="invisible_in_print">
 	<form action="/desc_models/list" method="GET">
 		<input type="text" name="table_name_patterns" size="100"
 			value="<%=h( params[:table_name_patterns] || @models.map{|m|m.table_name}.join(', ') ) %>" />
 		<input type="submit" value="search" />
 	</form>
-	<a href="/desc_models/reload">reload models</a>
 </div>
 
 <%- @models.each do |model| -%>
