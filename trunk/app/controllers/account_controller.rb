@@ -49,7 +49,7 @@ class AccountController < ApplicationController
   end
   
   def logout
-    self.current_user.forget_me if logged_in?
+    self.current_user.forget_me if logged_in? and !self.current_user.frozen?
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
@@ -82,6 +82,19 @@ class AccountController < ApplicationController
       @user.attributes = user_attr
       @user.save
       render :action => 'edit_profile'
+    end
+  end
+  
+  def resign
+    unless logged_in?
+      redirect_to(:controller=> 'recommend', :action => 'question') 
+      return
+    end
+    if request.get?
+      render :action => 'resign'
+    else
+      current_user.destroy
+      logout
     end
   end
   

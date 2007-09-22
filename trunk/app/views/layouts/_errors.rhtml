@@ -17,11 +17,11 @@
       error_messages = objects.map {|object| object.errors.full_messages.map {|msg| content_tag(:li, msg) } }
     end
 -%>
-<%- if count > 0 -%>
+<%- if (count > 0) or flash[:error]-%>
   <div id="errorExplanation" class="errorExplanation" style="display:none;">
   	<h2>エラー</h2>
-	<%= flash[:notice] %>
-   	<%- flash[:notice] = nil -%>
+	<%= flash[:error] %>
+   	<%- flash[:error] = nil -%>
 	
 	<p style="margin-top: 10px;">以下の項目にエラーがあります</p>
 	<%= content_tag(:ul, error_messages) -%>
