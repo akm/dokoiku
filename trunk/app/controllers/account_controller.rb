@@ -57,6 +57,32 @@ class AccountController < ApplicationController
   end
   
   def mypage
+    @user = current_user
+    if @user
+      render :action => 'mypage'
+    else
+      redirect_to(:controller=> 'recommend', :action => 'question') 
+    end
+  end
+
+  def edit_profile
+    @user = current_user
+    unless @user
+      redirect_to(:controller=> 'recommend', :action => 'question') 
+      return
+    end
+    if request.get?
+      render :action => 'edit_profile'
+    else
+      user_attr = params[:user].dup
+      if user_attr[:password].blank?
+        user_attr.delete(:password)
+        user_attr.delete(:password_confirmation)
+      end
+      @user.attributes = user_attr
+      @user.save
+      render :action => 'edit_profile'
+    end
   end
   
 end
