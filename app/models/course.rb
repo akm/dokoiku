@@ -5,6 +5,8 @@ class Course < ActiveRecord::Base
   has_many :entries, :foreign_key => 'course_id', :class_name => 'CourseEntry'
   has_many :spots, :through => :entries
 
+  has_many :ratings, :class_name => 'CourseRating', :foreign_key => 'course_id'
+
   def save_with_spots(spots)
     Course.transaction do 
       self.save!
@@ -15,6 +17,35 @@ class Course < ActiveRecord::Base
         spot = Spot.create!(spot_hash)
         entry = CourseEntry.create!(entry.merge(:line_no => index + 1, :spot_id => spot.id))
       end
+    end
+  end
+  
+  attr_accessor :rating
+  
+  def self.find_with_rating(options = {})
+    result = Course.find(:all, options)
+    ratings = Course.rating_avesages_for(result.map{|course|course.id})
+    
+    logger.debug("\n" * 5)
+    logger.debug("ratings => #{ratings.inspect}")
+    logger.debug("\n" * 5)
+    
+    result.each do |course|
+      course.rating = ratings[course.id] || 0
+    end
+    result
+  end
+  
+  def self.rating_avesages_for(ids)
+    averages = CourseRating.average('rating',
+      :group => 'course_id', 
+      :conditions => ['course_id in (?)', ids])
+    
+    logger.debug("averages => #{averages.inspect}")
+    
+    averages.inject({}) do |dest, row|
+      dest[row[0]] = row[1]
+      dest
     end
   end
 
