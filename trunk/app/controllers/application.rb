@@ -6,4 +6,6 @@ class ApplicationController < ActionController::Base
   session :session_key => '_white_night_session_id'
 
   include AuthenticatedSystem
+  
+  init_gettext "dokoiku"
 end
