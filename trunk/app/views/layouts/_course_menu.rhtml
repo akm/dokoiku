@@ -2,8 +2,8 @@
 	<div id="course_menu">
     	<h2><img src="/img/your_course.gif" alt="あなたの登録コース一覧" width="200" height="28" /></h2>
     	<div id="new_course_btn"><%= link_image_to "/img/new_course_btn.gif", :controller => "course", :action => "new", :width => "163", :height => "46" %></div>
-    	<ul>
-    	<%- current_user.courses.each do |course|  -%>
+    	<ul style="overflow-y: scroll; max-height: 300px;">
+    	<%- current_user.courses_with_rating.each do |course|  -%>
     		<li>
     		<%- if @course && (@course.id == course.id) -%>
     			<b><%= h course.name %>
@@ -14,7 +14,7 @@
     		<%- else -%>
     			<%= link_to "#{course.name}", :controller => 'course', :action => 'choice', :id => course.id %><br>
     		<%- end -%>
-    		オススメ度　<span class="star_point">★★★★★</span>
+    		オススメ度　<span class="star_point"><%=h stars(course.rating) %></span>
     		</li>
     	<%- end -%>
     	</ul>

@@ -38,15 +38,15 @@
 			</dd>
 	        <dt>性別</dt>
 	        <dd>
-	          <%= f.select("sex", User::UserAttribute.sex_options ) %>
+	          <%= f.select("sex", User.sex_options ) %>
 	        </dd>
 	        <dt>年齢</dt>
 	        <dd>
-	          <%= f.select("age", User::UserAttribute.age_options ) %>
+	          <%= f.select("age", User.age_options ) %>
 	        </dd>
 	        <dt>住所</dt>
 	        <dd>
-	          <%= f.select("address", User::UserAttribute.address_options ) %>
+	          <%= f.select("address", User.address_options ) %>
 	        </dd>
           </dl>
           <br class="clears" />

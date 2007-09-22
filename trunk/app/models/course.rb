@@ -25,11 +25,6 @@ class Course < ActiveRecord::Base
   def self.find_with_rating(options = {})
     result = Course.find(:all, options)
     ratings = Course.rating_avesages_for(result.map{|course|course.id})
-    
-    logger.debug("\n" * 5)
-    logger.debug("ratings => #{ratings.inspect}")
-    logger.debug("\n" * 5)
-    
     result.each do |course|
       course.rating = ratings[course.id] || 0
     end

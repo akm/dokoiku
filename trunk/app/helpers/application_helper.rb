@@ -23,5 +23,9 @@ module ApplicationHelper
     end
     return result
   end
+  
+  def stars(rating)
+    (rating.to_i < 1) ? '☆' : ('★' * rating.to_i)
+  end
 
 end

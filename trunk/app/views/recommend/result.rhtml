@@ -44,7 +44,7 @@ function click_other_course(result_index){
 
   <div id="result_list">
     <p class="font_bold font_red"><%=h @course.name %></p>
-    <p>オススメ度　<span class="star_point"><%=h('★' * (@course.rating || 1).to_i )%></span></p>
+    <p>オススメ度　<span class="star_point"><%=h stars(@course.rating) %></span></p>
 	  <h2 id="other_course">他のオススメコース</h2>
 	  <ul>
 	  	<%- @courses.each_with_index do |course, index| -%>
@@ -54,7 +54,7 @@ function click_other_course(result_index){
 		    		<%=h course.name %>	
 		    	</a>
 			    <br />
-		      	オススメ度　<span class="star_point"><%=h('★' * (course.rating || 1).to_i )%></span>
+		      	オススメ度　<span class="star_point"><%=h stars(course.rating) %></span>
 			</li>
 		<%- end -%>
 	  </ul>
