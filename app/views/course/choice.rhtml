@@ -19,11 +19,11 @@
 	                                   :html => '')
 	end
 -%>
+    <div id="course_output" style="margin-left: 200px;">
+	    <div id="course_map">
+	      <h2><img src="/img/input_map.gif" alt="ルート表示" width="555" height="22" style="margin-top:0px" /></h2>
+	      <div style="width:555px;height:380px;background:#ccc;"><%= map.div %></div>
+	    </div>
+    </div>
     <%= map.to_html %>
-    <div id="course_output">
-    <div id="course_map">
-      <h2><img src="/img/input_map.gif" alt="ルート表示" width="555" height="22" style="margin-top:0px" /></h2>
-      <div style="width:555px;height:380px;background:#ccc;"><%= map.div %></div>
-    </div>
-    </div>
 <%- end -%>
