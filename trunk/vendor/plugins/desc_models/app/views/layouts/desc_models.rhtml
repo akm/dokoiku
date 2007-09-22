@@ -52,7 +52,10 @@ body {
 	<a href="/desc_models/list">テーブル一覧</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href="/desc_models/generate_po">gettext po ファイル生成</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	schema_info version: <%=h ActiveRecord::Base.connection.select_value("select version from schema_info") %>
 </div>
+<hr/>
 
 <div>
 	<%= yield  %>
