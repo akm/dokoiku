@@ -379,3 +379,25 @@ dl#edit_form_right{
   padding:0 0 10px 10px;
   background:#fdd url(../img/resign_box_btm.gif) no-repeat bottom left;
 }
+/* help */
+body#help #container h3 img{ margin:10px 0;}
+.help_div_box{ margin-bottom:15px;}
+.w370{ width:370px;}
+.w240{ width:240px;}
+.w500{ width:500px;}
+.float_l{ float:left;}
+.float_r{
+  float:right;
+  margin:10px 0;
+}
+ul.help_ul{ 
+  float:right;
+  margin:10px 0;
+  width:390px;
+}
+ul.help_ul li{ padding:0 0 5px 20px;}
+ul.help_ul li.help_stp1{background:url(../img/no1.gif) no-repeat 0px 0px;}
+ul.help_ul li.help_stp2{background:url(../img/no2.gif) no-repeat 0px 0px;}
+ul.help_ul li.help_stp3{background:url(../img/no3.gif) no-repeat 0px 0px;}
+ul.help_ul li.help_stp4{background:url(../img/no4.gif) no-repeat 0px 0px;}
+ul.help_ul li.help_stp5{background:url(../img/no5.gif) no-repeat 0px 0px;}
