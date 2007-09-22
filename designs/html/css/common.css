@@ -345,12 +345,27 @@ h3.my_title {
 }
 dl#edit_form_left{
   float:left;
-  width:300px;
+  width:360px;
 }
 dl#edit_form_right{
   float:right;
-  width:200px;
+  width:140px;
 }
+dl#edit_form_left dt,
+dl#edit_form_right dt{
+  width:120px;
+  float:left;
+  margin-bottom:5px;
+}
+dl#edit_form_right dt{width:50px;}
+dl#edit_form_left dd,
+dl#edit_form_right dd{
+  width:220px;
+  float:left;
+  margin-bottom:5px;
+}
+dl#edit_form_right dd{width:80px;}
+
 #edit_fix_btn{
   text-align:center;
   background:url(../img/edit_prf_btm.gif) no-repeat bottom left;
@@ -401,3 +416,24 @@ ul.help_ul li.help_stp2{background:url(../img/no2.gif) no-repeat 0px 0px;}
 ul.help_ul li.help_stp3{background:url(../img/no3.gif) no-repeat 0px 0px;}
 ul.help_ul li.help_stp4{background:url(../img/no4.gif) no-repeat 0px 0px;}
 ul.help_ul li.help_stp5{background:url(../img/no5.gif) no-repeat 0px 0px;}
+/* password */
+#remind_pw_form{
+  margin:0 0 0 50px;
+}
+#remind_pw_form h2{
+  float:left;
+  width:270px;
+}
+#remind_pw dl{
+  float:left;
+  width:320px;
+  margin:30px 0 10px 0;
+}
+#remind_pw dl dt{
+  float:left;
+  width:7em;
+}
+#remind_pw dl dd{
+  float:left;
+  width:200px;
+}
