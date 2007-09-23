@@ -21,12 +21,22 @@ class CourseController < ApplicationController
   
   def new
     if request.get?
+      @course = Course.new
+      @course.creator = current_user
       render :action => 'new'
-    else
+    elsif params[:course_spots].blank?
+      flash[:error] = '少なくとも１つはスポットを登録してください'
       @course = Course.new(params[:course])
       @course.creator = current_user
+      render :action => 'new'
+    else
+      @course.creator = current_user
       @course.save_with_spots(JSON.parse(params[:course_spots]))
-      redirect_to :action => 'choice', :id => @course.id
+      if @course.errors.empty?
+        redirect_to :action => 'choice', :id => @course.id
+      else
+        render :action => 'new'
+      end
     end
   end
   

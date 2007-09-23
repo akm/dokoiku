@@ -73,28 +73,13 @@ function showAddress(address) {
 		  <img src="/img/circle_selection.png" id="color_selector" width="24" height="24" style="position:absolute; display:none;"/>
 		  <%= hidden_field 'question', 'feeling_x', :id => "question_feeling_x" %>
 		  <%= hidden_field 'question', 'feeling_y', :id => "question_feeling_y" %>
-<script type="text/javascript">
-//<![CDATA[
-(function(){
-	var color_selector = $("color_selector");
-	var color_table = $("color_table");
-	var question_feeling_x = $("question_feeling_x");
-	var question_feeling_y = $("question_feeling_y");
-	Event.observe(color_table, "click", function(event){
-		var tablePos = Position.cumulativeOffset(color_table);
-		var cursor_x = Event.pointerX(event);
-		var cursor_y = Event.pointerY(event);
-		question_feeling_x.value = cursor_x - tablePos[0];
-		question_feeling_y.value = cursor_y - tablePos[1];
-		var containerPos = Position.cumulativeOffset($("container"));
-		var color_selector_style = color_selector.style;
-		color_selector_style.display = '';
-		color_selector_style.left = (cursor_x - containerPos[0] - 12) + 'px';
-		color_selector_style.top = (cursor_y - containerPos[1] - 12) + 'px';
-	});
-})();
-//]]>
-</script>
+		  <%= render :partial => 'course/feeling_script', :locals => {
+					:selector => 'color_selector',
+					:color_table => 'color_table',
+					:feeling_x => 'question_feeling_x',
+					:feeling_y => 'question_feeling_y',
+					:container => 'container'
+				} %>
 	  </div>
 
 	  <div class="left_box">
