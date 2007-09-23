@@ -20,10 +20,10 @@
 <%- if (count > 0) or flash[:error]-%>
   <div id="errorExplanation" class="errorExplanation" style="display:none;">
   	<h2>エラー</h2>
-	<%= flash[:error] %>
-   	<%- flash[:error] = nil -%>
 	
 	<p style="margin-top: 10px;">以下の項目にエラーがあります</p>
+	<%= flash[:error] %>
+   	<%- flash[:error] = nil -%>
 	<%= content_tag(:ul, error_messages) -%>
 
     <p style="text-align:center;">

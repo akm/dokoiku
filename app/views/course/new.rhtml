@@ -1,5 +1,7 @@
 <% @title='オススメコース結果　今日はどこ行くと～？　今日の気分でコースを勝手に決めてくれるサイト' %>
 
+<%= render :partial => (@menu_name || 'layouts/course_menu') %>
+
 <%- map = GoogleMap.new -%>
 <%- 
 	spots = current_user.courses.empty? ? [] : current_user.courses.first.spots
@@ -17,7 +19,6 @@
 	                                   :html => '')
 	end
 -%>
-
 
 <%= javascript_include_tag 'json' %>
 <script type="text/javascript">
@@ -110,6 +111,70 @@ function hoge(obj) {
           <h2><img src="/img/input_map.gif" alt="ルート表示" width="555" height="22" /></h2>
           <div style="width:555px;height:300px;background:#ccc;"><%= map.to_html{"customize_google_map();"} %><%= map.div %></div>
         </div>
+
+	    <div id="course_other">
+	      <div id="course_feeling">
+	        <h2>気分を選んでください</h2>
+			<p style="padding-top: 5px;">
+			  <span style="display:block; float:left; background-image: url(/img/feeling_coler.jpg); background-position:<%= 380 - @course.feeling_x.to_i %>px <%= 380 - @course.feeling_y.to_i %>px; width:16px; height:16px;" id="feeling_selected">&nbsp;</span>
+	          <a href="javascript:void(0)" id="feeling_link"><img src="/img/input_feeling_btn.gif" alt="気分選択"/></a>
+			  <span style="display:block; clear:left;"></span>
+			</p>
+		  </div>
+	      <div id="course_purpose">
+	        <h2>目的を選んでください</h2>
+			<div>
+		        <%= radio_group 'course', 'purpose_cd', Course.purpose_enum.to_hash_array do |radio, label, hash, radio_id|
+              	'%s%s &nbsp;' % [radio, label]
+            end%>
+			</div>
+	      </div><br class="clears" />
+	    </div>
+
+		<%= hidden_field 'course', 'feeling_x', :id => "course_feeling_x" %>
+		<%= hidden_field 'course', 'feeling_y', :id => "course_feeling_y" %>
+		  <!-- ▼ここからbox -->
+		  <div id="feeling_select_window" style="display:none;">
+		    <h2><img src="/img/feeling_title.gif" alt="気分を選んでください" /></h2>
+			<img src="/img/feeling_coler.jpg" alt="colorbox" id="color_table"/>
+			<img src="/img/circle_selection.png" id="color_selector" width="24" height="24" style="position:absolute; display:none;"/>
+			<%= render :partial => 'course/feeling_script', :locals => {
+					:selector => 'color_selector',
+					:color_table => 'color_table',
+					:feeling_x => 'course_feeling_x',
+					:feeling_y => 'course_feeling_y',
+					:container => 'RB_window'
+				} %>
+			<br/>
+			<a href="javascript:void(0)" id="redbox_close_btn">
+				<img src="/img/feeling_btn.gif" id="feeling_btn" alt="気分を選択する"/>
+			</a>
+		  </div>
+		  <!-- ▲ここまでbox -->
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+	var first_time = true;
+	Event.observe('feeling_link', 'click', function(){
+		if (first_time){
+			RedBox.showOverlay();
+			RedBox.addHiddenContent("feeling_select_window");
+			first_time = false;
+		} else {
+		    new Effect.Appear('RB_window', {duration: 0.4, queue: 'end'});        
+		    new Effect.Appear('RB_overlay', {duration: 0.4, queue: 'end'});
+		}
+	})
+	Event.observe("redbox_close_btn", 'click', function(){
+		$("feeling_selected").style.backgroundPosition = 
+			(380 - $('course_feeling_x').value * 1) + 'px ' +
+			(380 - $('course_feeling_y').value * 1) + 'px ';
+		RedBox.close();
+	})
+})();
+//]]>
+</script>
+
         <input type="image" src="/img/input_btn.gif" id="course_btn" alt="このコースを登録する" />
       </form>
     </div>
