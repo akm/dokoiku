@@ -1,4 +1,5 @@
 <% @title='オススメコース結果　今日はどこ行くと～？　今日の気分でコースを勝手に決めてくれるサイト' %>
+<%- @error_object_names = 'course' -%>
 
 <%= render :partial => (@menu_name || 'layouts/course_menu') %>
 
@@ -25,6 +26,15 @@
 //<![CDATA[
 var spots = [];
 var markers = [];
+function openInfoWindow(marker, spot, elements){
+	var infoWindow = marker.openInfoWindowHtml(elements.content);
+	GEvent.addListener(marker, "infowindowclose", function(){
+		spot.name = elements.name.value;
+		spot.comment = elements.comment.value;
+      	$('spots_json').value = JSON.toJSON(spots);
+	});
+	return infoWindow;
+}
 
 function customize_google_map(){
   var initialize_without_customize = window.onload;
@@ -38,12 +48,7 @@ function customize_google_map(){
 		var marker = overlay;
 		var spot = spots[markerIndex];
 		var elements = generateInfoWindowContent(spot);
-		var infoWindow = marker.openInfoWindowHtml(elements.content);
-		GEvent.addListener(marker, "infowindowclose", function(){
-			spot.name = elements.name.value;
-			spot.comment = elements.comment.value;
-	      	$('spots_json').value = JSON.toJSON(spots);
-		});
+		openInfoWindow(marker, spot, elements);
 		return;
 	  }
 	  if (point) {
@@ -64,12 +69,7 @@ function customize_google_map(){
 		spots.push(spot);
       	$('spots_json').value = JSON.toJSON(spots);
 		var elements = generateInfoWindowContent({});
-		var infoWindow = marker.openInfoWindowHtml(elements.content);
-		GEvent.addListener(marker, "infowindowclose", function(){
-			spot.name = elements.name.value;
-			spot.comment = elements.comment.value;
-	      	$('spots_json').value = JSON.toJSON(spots);
-		});
+		openInfoWindow(marker, spot, elements);
 		setTimeout(function(){
 			elements.name.focus();
 			elements.name.select();
