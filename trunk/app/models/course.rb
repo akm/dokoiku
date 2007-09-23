@@ -7,6 +7,16 @@ class Course < ActiveRecord::Base
 
   has_many :ratings, :class_name => 'CourseRating', :foreign_key => 'course_id', :dependent => :destroy
 
+  extends_column :purpose_cd do
+    enum do
+      entry 1, :date, 'デート'
+      entry 2, :alone, '1人'
+      entry 3, :friend, '友達と'
+      entry 4, :big_party, '大勢で'
+      entry 5, :sightseen, '観光で'
+    end
+  end
+
   def save_with_spots(spots)
     Course.transaction do 
       self.save!
@@ -87,6 +97,7 @@ class Course < ActiveRecord::Base
     
     def to_find_options(options = nil)
       wheres = []
+      order = ''
       select = "courses.*"
       if start_x and start_y
         distance_sqlet = "(first_spot.latitude - #{start_y.to_f}) * (first_spot.latitude - #{start_y.to_f}) + (first_spot.longitude - #{start_x.to_f}) * (first_spot.longitude - #{start_x.to_f})"
@@ -94,6 +105,18 @@ class Course < ActiveRecord::Base
         # wheres << "#{distance_sqlet} < 0.01"
       else
         select << ',0 distance'
+      end
+      order << 'distance asc'
+      if feeling_x and feeling_y
+        feeling_sqlet = "(courses.feeling_y - #{feeling_y.to_i}) * (courses.feeling_y - #{feeling_y.to_i}) + (courses.feeling_x - #{feeling_x.to_i}) * (courses.feeling_x - #{feeling_x.to_i})"
+        select << ',' << feeling_sqlet << 'feeling'
+        # wheres << "#{feeling_sqlet} < 0.01"
+        order << ', feeling asc'
+      else
+        select << ',0 feeling'
+      end
+      if purpose_cd
+        wheres << "courses.purpose_cd = :purpose_cd"
       end
       joins = ' inner join course_entries first_entry on courses.id = first_entry.course_id' <<
           ' inner join spots first_spot on first_spot.id = first_entry.spot_id'
@@ -103,7 +126,7 @@ class Course < ActiveRecord::Base
         :select => select,
         :conditions => [wheres.join(' and '), self.to_hash],
         :joins => joins,
-        :order => 'distance asc',
+        :order => order,
         :limit => 3
       }
     end
