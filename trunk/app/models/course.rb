@@ -6,6 +6,8 @@ class Course < ActiveRecord::Base
   has_many :spots, :through => :entries
 
   has_many :ratings, :class_name => 'CourseRating', :foreign_key => 'course_id', :dependent => :destroy
+  
+  validates_presence_of :name
 
   extends_column :purpose_cd do
     enum do
@@ -19,13 +21,16 @@ class Course < ActiveRecord::Base
 
   def save_with_spots(spots)
     Course.transaction do 
-      self.save!
-      spots.each_with_index do |spot_hash, index|
-        entry = {
-          :course_id => self.id, :line_no => spot_hash.delete(:line_no)
-        }
-        spot = Spot.create!(spot_hash)
-        entry = CourseEntry.create!(entry.merge(:line_no => index + 1, :spot_id => spot.id))
+      if self.save
+        spots.each_with_index do |spot_hash, index|
+          begin
+            spot = Spot.create!({:course_id => self.id, :line_no => spot_hash.delete(:line_no)})
+            entry = CourseEntry.create!(entry.merge(:line_no => index + 1, :spot_id => spot.id))
+          rescue
+            self.errors.add_to_base("コースの登録中にエラーが発生しました")
+            break
+          end
+        end
       end
     end
   end

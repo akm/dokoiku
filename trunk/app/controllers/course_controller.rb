@@ -30,6 +30,7 @@ class CourseController < ApplicationController
       @course.creator = current_user
       render :action => 'new'
     else
+      @course = Course.new(params[:course])
       @course.creator = current_user
       @course.save_with_spots(JSON.parse(params[:course_spots]))
       if @course.errors.empty?
