@@ -277,6 +277,49 @@ h3.my_title {
 #course_btn{
     margin-top:10px;
 }
+#course_other{
+  margin-top:15px;
+}
+#course_other h2{
+  display:none;
+}
+#course_feeling{
+  float:left;
+  width:165px;
+  height:35px;
+  background:url(../img/input_feeling.gif) no-repeat 0 0;
+}
+#course_feeling p{
+  margin:0 0 0 60px;
+}
+#course_feeling span{
+  font-size:25px;
+  vertical-align:bottom;
+}
+#course_feeling img{
+  margin:0 0 0 10px;
+}
+#course_purpose{
+  float:right;
+  width:383px;
+  height:35px;
+  background:url(../img/input_purpose.gif) no-repeat 0 0;
+}
+#course_purpose div{
+  margin:7px 0 0 60px;
+}
+#feeling_select_window{
+  padding:15px;
+  background:#fff;
+  z-index:10;
+  text-align:center;
+}
+#feeling_select_window h2{
+  margin-bottom:10px;
+}
+#feeling_select_window input{
+  margin:10px auto;
+}
 /* mypage */
 #member_profile{
   float:left;

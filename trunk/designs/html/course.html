@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="shift_jis" standalone="yes"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,10 +20,9 @@
   </div>
   <div id="container">
     <div id="members_login_now"> <img src="img/m_login_t.gif" alt="会員登録をしませんか" />
-      <div id="input_area"> <p>○○○○○○○○○○○○さんログイン中</p> 
-      <div id="input_btn">
-      <a href="#"><img src="img/mypg_btn.gif" alt="mypage" width="78" height="24" /></a>
-      <a href="#"><img src="/img/course_btn.gif" alt="コース入力" width="78" height="24" /></a><a href="#"><img src="img/logout_btn.gif" alt="ログアウト" width="77" height="22" /></a></div>
+      <div id="input_area">
+        <p>○○○○○○○○○○○○さんログイン中</p>
+        <div id="input_btn"> <a href="#"><img src="img/mypg_btn.gif" alt="mypage" width="78" height="24" /></a> <a href="#"><img src="/img/course_btn.gif" alt="コース入力" width="78" height="24" /></a><a href="#"><img src="img/logout_btn.gif" alt="ログアウト" width="77" height="22" /></a></div>
       </div>
     </div>
     <div id="course_menu">
@@ -56,6 +55,38 @@
           <h2><img src="img/input_map.gif" alt="ルート表示" width="555" height="22" /></h2>
           <div style="width:555px;height:300px;background:#ccc;"> googlemap </div>
         </div>
+        <div id="course_other">
+          <div id="course_feeling">
+            <h2>気分を選んでください</h2>
+			<p>
+			<span style="color:#FF9900;">■</span>
+            <a href="#"><img src="img/input_feeling_btn.gif" alt="気分選択" /></a></p>
+		  </div>
+          <div id="course_purpose">
+            <h2>目的を選んでください</h2>
+			<div>
+            <input name="purpose" type="radio" id="pp_couple" value="pp_couple" />
+            <label for="pp_couple">デート</label>
+            <input name="purpose" type="radio" id="pp_alone" value="pp_alone" />
+            <label for="pp_alone">1人</label>
+            <input name="purpose" type="radio" id="pp_friend" value="pp_friend" />
+            <label for="pp_friend">友達と</label>
+            <input name="purpose" type="radio" id="pp_many" value="pp_many" />
+            <label for="pp_many">大勢で</label>
+            <input name="purpose" type="radio" id="pp_trip" value="pp_trip" />
+            <label for="pp_trip">観光で</label>
+			</div>
+          </div><br class="clears" />
+        </div>
+		
+		 <!-- ▼ここからbox -->
+		  <div id="feeling_select_window">
+		    <h2><img src="img/feeling_title.gif" alt="気分を選んでください" /></h2>
+			<img src="img/feeling_coler.jpg" alt="colorbox" />
+			<input type="image" src="img/feeling_btn.gif" id="feeling_btn" alt="気分を選択する" />
+		  </div>
+		  <!-- ▲ここまでbox -->
+		
         <input type="image" src="img/input_btn.gif" id="course_btn" alt="このコースを登録する" />
       </form>
     </div>
