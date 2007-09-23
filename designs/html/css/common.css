@@ -440,10 +440,16 @@ dl#edit_form_right dd{width:80px;}
 /* help */
 body#help #container h3 img{ margin:10px 0;}
 .help_div_box{ margin-bottom:15px;}
-.w370{ width:370px;}
+
+.w180{ width:180px;}
+.w200{ width:200px;}
 .w240{ width:240px;}
+.w330{ width:330px;}
+.w370{ width:370px;}
 .w500{ width:500px;}
+.w520{ width:520px;}
 .float_l{ float:left;}
+.float_rt{float:right;}
 .float_r{
   float:right;
   margin:10px 0;
@@ -479,4 +485,29 @@ ul.help_ul li.help_stp5{background:url(../img/no5.gif) no-repeat 0px 0px;}
 #remind_pw dl dd{
   float:left;
   width:200px;
+}
+/* staffroll */
+#from_staff{
+  padding-bottom:15px;
+  background:url(../img/stf_btm.gif) no-repeat bottom left;
+}
+#from_staff p{ line-height:1.5;}
+#staffroll{
+  margin-top:-12px;
+  padding:0 10px;
+  background:url(../img/stf_bg.gif) repeat-y 0 0;
+}
+.staff_contents{
+  padding:0 15px 15px 15px;
+  vertical-align:top;
+}
+.staff_contents p{ margin-top:0;}
+dl.staff_intro dt{
+  float:left;
+  width:210px;
+  text-align:right;
+}
+dl.staff_intro dd{
+  float:left;
+  width:90px;
 }
