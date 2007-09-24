@@ -1,0 +1,3 @@
+== required gems ==
+gem install gettext
+gem install json
