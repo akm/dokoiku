@@ -47,7 +47,7 @@ class GoogleMapIcon
     
     html << "<script type=\"text/javascript\">\n/* <![CDATA[ */\n"  
     html << to_js
-    html << "/* ]]> */</script> "
+    html << "/* ]]> */</script>"
     
     return html.join("\n")
   end

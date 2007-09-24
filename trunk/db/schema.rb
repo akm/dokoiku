@@ -11,9 +11,9 @@ ActiveRecord::Schema.define(:version => 7) do
   end
 
   create_table "course_ratings", :force => true do |t|
-    t.column "user_id",    :integer, :default => 0, :null => false
-    t.column "course_id",  :integer, :default => 0, :null => false
-    t.column "rating",     :integer, :default => 0, :null => false
+    t.column "user_id",    :integer, :null => false
+    t.column "course_id",  :integer, :null => false
+    t.column "rating",     :integer, :null => false
     t.column "created_at", :time
     t.column "updated_at", :time
   end
