@@ -29,11 +29,14 @@ var markers = [];
 var geocoder = null;
 function openInfoWindow(marker, spot, elements){
 	var infoWindow = marker.openInfoWindowHtml(elements.content);
-	GEvent.addListener(marker, "infowindowclose", function(){
+	var updateSpotJson = function(){
 		spot.name = elements.name.value;
 		spot.comment = elements.comment.value;
       	$('spots_json').value = JSON.toJSON(spots);
-	});
+	};
+	GEvent.addListener(marker, "infowindowclose", updateSpotJson);
+	Event.observe(elements.name, 'blur', updateSpotJson);
+	Event.observe(elements.comment, 'blur', updateSpotJson);
 	return infoWindow;
 }
 
