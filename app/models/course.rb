@@ -23,16 +23,16 @@ class Course < ActiveRecord::Base
     Course.transaction do 
       if self.save
         spots.each_with_index do |spot_hash, index|
-          begin
-            spot = Spot.create!({:course_id => self.id, :line_no => spot_hash.delete(:line_no)})
-            entry = CourseEntry.create!(entry.merge(:line_no => index + 1, :spot_id => spot.id))
-          rescue
-            self.errors.add_to_base("コースの登録中にエラーが発生しました")
-            break
-          end
+          entry = {
+            :course_id => self.id, :line_no => spot_hash.delete(:line_no)
+          }
+          spot = Spot.create!(spot_hash)
+          CourseEntry.create!(entry.merge(:line_no => index + 1, :spot_id => spot.id))
         end
       end
     end
+  rescue
+    self.errors.add_to_base("コースの登録中にエラーが発生しました" << $!.message)
   end
   
   attr_accessor :rating
