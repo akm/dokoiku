@@ -251,31 +251,24 @@ h3.my_title {
 	height:18px;
 	border:1px solid #fff;
 }
-#comment_box {
-	border:1px solid #f66;
-	padding:15px;
-}
-#comment_box textarea{
-  width:520px;
-  height:100px;
-  border:1px solid #fff;
-}
-#course_table table {
-	border-collapse:collapse;
-	width:555px;
-	margin-bottom:15px;
-}
-#course_table table th {
-	font-weight:normal;
-	text-align:left;
-	background:#fcc;
-}
-#course_table table th, #course_table table td {
-	padding:5px;
-	border-bottom:1px solid #f99;
-}
+
 #course_btn{
     margin-top:10px;
+}
+#googlemap{
+    width:555px;
+    height:300px;
+    margin-bottom:-10px;
+}
+#map_area_imput #address{
+    border:1px solid #f66;
+    height:21px;
+}
+#map_area_imput textarea{
+    margin:0 5px 0 0;
+}
+#map_area_imput #map_search_btn{
+    vertical-align:middle;
 }
 #course_other{
   margin-top:15px;
