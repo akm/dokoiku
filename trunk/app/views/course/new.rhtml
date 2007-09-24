@@ -26,6 +26,7 @@
 //<![CDATA[
 var spots = [];
 var markers = [];
+var geocoder = null;
 function openInfoWindow(marker, spot, elements){
 	var infoWindow = marker.openInfoWindowHtml(elements.content);
 	GEvent.addListener(marker, "infowindowclose", function(){
@@ -76,6 +77,7 @@ function customize_google_map(){
 		}, 300);
 	  }
     });
+	geocoder = new GClientGeocoder();
   }
 }
 function generateInfoWindowContent(spot){
@@ -90,8 +92,13 @@ function generateInfoWindowContent(spot){
 	comment_element.rows = 4;
 	comment_element.innerHTML = spot.comment || '';
 	name_container.appendChild(name_element);
+	var delete_button_element =  document.createElement('input');
+	delete_button_element.type = "button";
+	delete_button_element.value = "削除";
+	delete_button_element.onclick = "alert('delete');";
 	result.appendChild(name_container);
 	result.appendChild(comment_element);
+	result.appendChild(delete_button_element);
 	return {content: result, name: name_element, comment: comment_element};
 }
 function hoge(obj) {
@@ -100,6 +107,10 @@ function hoge(obj) {
 //]]>
 </script>
 
+　　<div>
+　　　　<input type="text" id="address" size="30" name="address" value="長崎 出島町" onchange="showAddress($F('address'))" onenter="showAddress($F('address'))"/>
+　　　　<input type="button" value="Go!" onclick="showAddress($F('address'))" />
+　　</div>
 <%- form_tag do -%>
     <div id="course_input">
       <form action="" method="post">
@@ -172,6 +183,24 @@ function hoge(obj) {
 		RedBox.close();
 	})
 })();
+
+
+function showAddress(address) {
+  if (geocoder) {
+    geocoder.getLatLng(
+      address,
+      function(result) {
+        if (!result) {
+          alert(address + " が見つかりませんでした。");
+        } else {
+          google_map.setCenter(result, 16);
+　　　　　　　　　　// ここでマーカーと入力ボックス表示したい
+        }
+      }
+    );
+  }
+}
+
 //]]>
 </script>
 
