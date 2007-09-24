@@ -110,10 +110,6 @@ function hoge(obj) {
 //]]>
 </script>
 
-　　<div>
-　　　　<input type="text" id="address" size="30" name="address" value="長崎 出島町" onchange="showAddress($F('address'))" onenter="showAddress($F('address'))"/>
-　　　　<input type="button" value="Go!" onclick="showAddress($F('address'))" />
-　　</div>
 <%- form_tag do -%>
     <div id="course_input">
       <form action="" method="post">
@@ -123,8 +119,12 @@ function hoge(obj) {
         </div>
         <div id="course_map">
           <h2><img src="/img/input_map.gif" alt="ルート表示" width="555" height="22" /></h2>
-          <div style="width:555px;height:300px;background:#ccc;"><%= map.to_html{"customize_google_map();"} %><%= map.div %></div>
-        </div>
+          <div id="googlemap"><%= map.to_html{"customize_google_map();"} %><%= map.div %></div>
+          　　<div id="map_area_imput">
+                <input type="text" id="address" size="30" name="address" value="長崎 出島町" onchange="showAddress($F('address'))" onenter="showAddress($F('address'))"/>
+                <input type="image" src="/img/input_search_btn.gif" alt="ここからスタート" id="map_search_btn" onclick="showAddress($F('address'))" />
+                </div>
+            </div>
 
 	    <div id="course_other">
 	      <div id="course_feeling">
