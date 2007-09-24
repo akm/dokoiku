@@ -5,5 +5,5 @@
 #adm_header,#adm_header_bx{height:1px;}
 #adm_illust{height:1px;}
 #from_staff{height:1px;}
-#google_map{border:0px solid red;}
+#google_map{margin:20px 0 -5px -11px;}
 /* 上述の専用のズームプロパティにより、いくつかのバグを回避するのに必要な hasLayout が IE に対して設定されます */
