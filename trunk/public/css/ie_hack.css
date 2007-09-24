@@ -4,4 +4,5 @@
 /* この条件分岐コメントにすべてのバージョンの IE を対象とした css のフィックスを配置します */
 #adm_header,#adm_header_bx{height:1px;}
 #adm_illust{height:1px;}
+#from_staff{height:1px;}
 /* 上述の専用のズームプロパティにより、いくつかのバグを回避するのに必要な hasLayout が IE に対して設定されます */
