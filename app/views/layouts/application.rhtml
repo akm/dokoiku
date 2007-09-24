@@ -50,6 +50,11 @@ li.menu{
 	<%= yield%>
   </div>
   <div id="footer">
+	<p>
+		<%= link_to_remote_redbox 'privacy policy', :url => {:controller => 'account', :action => 'privacy'} %>
+		&nbsp;|&nbsp;
+		<%= link_to 'ruby business commons', 'http://www.rubybizcommons.jp/' %>
+	</p>
     <p id="copyright">Copyright 2007 今日はどこ行くと～？ All Rights Reserved.</p>
   </div>
 </div>

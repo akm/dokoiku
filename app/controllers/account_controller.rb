@@ -98,4 +98,8 @@ class AccountController < ApplicationController
     end
   end
   
+  def privacy
+    render :partial => 'account/privacy'
+  end
+  
 end
