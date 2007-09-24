@@ -112,26 +112,25 @@ function hoge(obj) {
 
 <%- form_tag do -%>
     <div id="course_input">
-      <form action="" method="post">
+        <form action="" method="post">
         <div id="c_name">
-          <h2>コース名</h2>
-          <%= text_field 'course', 'name', :id => 'course_name', :value => "コース名を入れてください", :onclick => "javascript:hoge(this);" %>
+        <h2>コース名</h2>
+         <%= text_field 'course', 'name', :id => 'course_name', :value => "コース名を入れてください", :onclick => "javascript:hoge(this);" %>
         </div>
         <div id="course_map">
-          <h2><img src="/img/input_map.gif" alt="ルート表示" width="555" height="22" /></h2>
-          <div id="googlemap"><%= map.to_html{"customize_google_map();"} %><%= map.div %></div>
-          　　<div id="map_area_imput">
+            <h2><img src="/img/input_map.gif" alt="ルート表示" width="555" height="22" /></h2>
+            <div id="googlemap"><%= map.to_html{"customize_google_map();"} %><%= map.div %></div>
+            <div id="map_area_imput">
                 <input type="text" id="address" size="30" name="address" value="長崎 出島町" onchange="showAddress($F('address'))" onenter="showAddress($F('address'))"/>
                 <input type="image" src="/img/input_search_btn.gif" alt="ここからスタート" id="map_search_btn" onclick="showAddress($F('address'))" />
-                </div>
             </div>
-
+            </div>
 	    <div id="course_other">
 	      <div id="course_feeling">
 	        <h2>気分を選んでください</h2>
 			<p style="padding-top: 5px;">
-			  <span style="display:block; float:left; background-image: url(/img/feeling_coler.jpg); background-position:<%= 380 - @course.feeling_x.to_i %>px <%= 380 - @course.feeling_y.to_i %>px; width:16px; height:16px;" id="feeling_selected">&nbsp;</span>
-	          <a href="javascript:void(0)" id="feeling_link"><img src="/img/input_feeling_btn.gif" alt="気分選択"/></a>
+			  <span class="colorbox" style="background-position:<%= 380 - @course.feeling_x.to_i %>px <%= 380 - @course.feeling_y.to_i %>px;" id="feeling_selected">&nbsp;</span>
+                            <a href="javascript:void(0)" id="feeling_link"><img src="/img/input_feeling_btn.gif" alt="気分選択"/></a>
 			  <span style="display:block; clear:left;"></span>
 			</p>
 		  </div>
