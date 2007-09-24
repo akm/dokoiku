@@ -49,8 +49,33 @@ body {
 #footer {
 	clear:both;
 	padding:25px 0;
-	text-align:center;
+/*	text-align:center;*/
+        position:relative;
 	background:#f99 url(../img/footer.gif) no-repeat 0 0;
+}
+#footer p#copyright{
+        position:absolute;
+        top:25px;
+        left:15px;
+}
+#footer ul#footer_list{
+        position:absolute;
+        top:25px;
+        right:15px;
+        display:inline;
+}
+#footer ul#footer_list li{
+        padding:0 0 0 15px;
+        margin-left:5px;
+        float:left;
+        background:#f99 url(../img/footer_list.gif) no-repeat center left;
+}
+#footer ul#footer_list li a{
+        text-decoration:none;
+}
+#footer ul#footer_list li a:link,
+#footer ul#footer_list li a:visited{
+        color:#903;
 }
 
 /* result*/
@@ -234,7 +259,9 @@ h3.my_title {
 #course_input {
 	width:555px;
 	float:right;
-	background:url(../img/input_name.gif) no-repeat 0 0;
+}
+#c_name{
+    background:url(../img/input_name.gif) no-repeat 0 0;
 }
 #c_name h2 {
 	display:none;
@@ -255,11 +282,20 @@ h3.my_title {
 #course_btn{
     margin-top:10px;
 }
-#googlemap{
+#course_map{
+    margin:10px 0 0 0;
+}
+#course_map h2 img{
+     margin:0;
+}
+#course_map #googlemap{
     width:555px;
     height:300px;
-    margin-bottom:-10px;
 }
+#course_map #google_map{
+
+}
+
 #map_area_imput #address{
     border:1px solid #f66;
     height:21px;
@@ -288,6 +324,14 @@ h3.my_title {
 #course_feeling span{
   font-size:25px;
   vertical-align:bottom;
+}
+#course_feeling .colorbox{
+    display:block;
+    float:left;
+    background-image: url(/img/feeling_coler.jpg);
+    width:16px;
+    height:16px;
+    overflow:hidden;
 }
 #course_feeling img{
   margin:0 0 0 10px;
