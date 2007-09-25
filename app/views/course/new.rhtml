@@ -121,8 +121,43 @@ function hoge(obj) {
             <h2><img src="/img/input_map.gif" alt="ルート表示" width="555" height="22" /></h2>
             <div id="googlemap"><%= map.to_html{"customize_google_map();"} %><%= map.div %></div>
             <div id="map_area_imput">
-                <input type="text" id="address" size="30" name="address" value="長崎 出島町" onchange="showAddress($F('address'))" onenter="showAddress($F('address'))"/>
-                <input type="image" src="/img/input_search_btn.gif" alt="ここからスタート" id="map_search_btn" onclick="showAddress($F('address'))" />
+                <input type="text" id="address" size="30" name="address" value="長崎 出島町" />
+				<a hred="javascript:void(0)" id="move_link" alt="地図を移動">
+	                <img src="/img/input_search_btn.gif" alt="ここからスタート" id="map_search_btn"/>
+				</a>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+	function showAddress(address) {
+	  if (geocoder) {
+	    geocoder.getLatLng(
+	      address,
+	      function(result) {
+	        if (!result) {
+	          alert(address + " が見つかりませんでした。");
+	        } else {
+	          google_map.setCenter(result, 16);
+	　　　　　　　　　　// ここでマーカーと入力ボックス表示したい
+	        }
+	      }
+	    );
+	  }
+	}
+
+	var address_field = $('address');
+	Event.observe(address_field, 'keypress', function(event){
+        if (event.keyCode == Event.KEY_RETURN){
+			showAddress(address_field.value);
+			Event.stop(event);
+		}
+	}, true);
+	
+	Event.observe($("move_link"), 'click', function(){
+		showAddress(address_field.value);
+	});
+})();
+//]]>
+</script>
             </div>
             </div>
 	    <div id="course_other">
@@ -185,24 +220,6 @@ function hoge(obj) {
 		RedBox.close();
 	})
 })();
-
-
-function showAddress(address) {
-  if (geocoder) {
-    geocoder.getLatLng(
-      address,
-      function(result) {
-        if (!result) {
-          alert(address + " が見つかりませんでした。");
-        } else {
-          google_map.setCenter(result, 16);
-　　　　　　　　　　// ここでマーカーと入力ボックス表示したい
-        }
-      }
-    );
-  }
-}
-
 //]]>
 </script>
 
