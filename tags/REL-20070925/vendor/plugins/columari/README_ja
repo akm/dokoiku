@@ -1,0 +1,128 @@
+Columari
+========
+
+Columariはマイグレーションのカラムのコメントに
+モデルのバリデーションをかけるようにするプラグインです。
+
+
+ドキュメント
+======
+http://qwik.jp/rbc/columari.html
+
+
+install
+=====
+ ruby script/plugin install http://rubybizcommons.rubyforge.org/svn/plugins/columari/trunk/columari/
+
+オプション
+=====
+- column_comments
+-- http://blog.inquirylabs.com/2006/11/20/column-comments-13/
+-- http://blog.inquirylabs.com/2006/09/01/updated-columncomments-plugin-v12/
+
+column_commentsプラグインを使うと、マイグレーションの中でカラムのコメントを
+設定することが可能になります。このコメント中にextends_columnメソッドのoptions
+を記述しておき、モデルでextends_by_column_commentメソッドを呼び出すと
+自動的にextends_columnメソッドが実行されます。
+
+
+使い方
+=====
+ extends_column(column_name1, [column_name2, ・・・], options)
+
+* column_name
+拡張するカラムをStringかSymbolで指定します。
+
+* options: 
+オプションをHashで指定します。
+
+** options[:base_name] 
+
+** options[:validate], options[:validates], options[:validation], options[:validations]
+これらのキーに対する値は、validationを宣言するメソッドを表します。
+
+StringかSymbolで単にvalidationメソッド名の一部<method_name>を指定した場合、columariは以下の動作を行います。
+ validates_<method_name>_of(<column_name>)
+or
+ validates_<method_name>(<column_name>)
+
+Hashでvalidationメソッド名の一部<method_name>とそのオプションを指定した場合、columariは以下の動作を行います。
+ validates_<method_name>_of(<column_name>, <options>)
+or 
+ validates_<method_name>(<column_name>, <options>)
+
+どちらが実行されるかは、指定された<method_name>に依存します。
+
+
+
+** options[:association], options[:associations]
+これらのキーに対する値は関連を定義するメソッドを表します。
+
+StringかSymbolで関連を定義するメソッド名<method_name>を単に指定した場合、columariは以下の動作を行います。
+  <method_name>(<base_name>, <options>)
+
+Hashで関連を定義するメソッド名<method_name>とそのオプションを指定した場合、columariは以下の動作を行います。
+  <method_name>(<base_name>, <options>)
+
+もし<options>がnil、あるいは:foreign_keyというキーを含まないHashの場合、
+オプションには{:foreign_key => <column_name>}をmergeします。
+
+現在使用できるメソッドは belongs_to, has_many or has_one です。
+
+
+** options[:enum]
+このキーに対する値は、値の列挙を意味します。それ自身はHashでなければなりません。
+
+*** options[:enum][:entries]
+これは
+ [<値>, <ruby上でのキー>, <ビューでの名称>]
+というArrayのArrayを指定してください。
+
+*** options[:enum] で定義されるクラス
+<Model>::<base_name.camelize> 
+options[:enum][:entries]で指定されたエントリを保持するためのクラスです。
+
+*** [options :enum] で定義されるメソッド
+<Model>.<base_name>_cd_by_key(key)
+<Model>.<base_name>_key_by_cd(cd)
+<Model>.<base_name>_name_by_key(key)
+<Model>.<base_name>_name_by_cd(cd)
+<Model>#<base_name>_key
+<Model>#<base_name>_key=(key)
+<Model>#<base_name>_name
+
+
+
+* 例
+こんな風に、関連や列挙、validationを書くことができます：
+
+ class Telephone < ActiveRecord::Base
+   extends_column :user_id, {
+       :association => :belongs_to,
+       :validates => :presence
+     }
+   extends_column :gender_cd, {
+       :enum => {
+         :entries => [
+                  [1, :female, 'female'],
+                  [2, :male, 'male'],
+                  [3, :unknown, 'unknown']
+         ]
+       },
+       :validates => [:presence]
+     }
+   extends_column :name, {
+   	  :validates => [presence, :uniqueness, :format => {:with => /[a-zA-Z ]+/}]
+     }
+   extends_column :age, {
+       :validates => {:inclusion => {:in => 0..200}}
+     }
+  end
+
+
+== Resources
+Subversion
+Blog
+Author
+
+

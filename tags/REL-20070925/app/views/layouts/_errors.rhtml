@@ -1,0 +1,38 @@
+<%- object_names = @error_object_names || [] -%>
+<%- object_names = [object_names] unless object_names.is_a?(Array) -%>
+<%- 
+    options = object_names.last.is_a?(Hash) ? object_names.pop.symbolize_keys : {}
+    objects = object_names.collect {|object_name| instance_variable_get("@#{object_name}") }.compact
+    count   = objects.inject(0) {|sum, object| sum + object.errors.count }
+    unless count.zero?
+      html = {}
+      [:id, :class].each do |key|
+        if options.include?(key)
+          value = options[key]
+          html[key] = value unless value.blank?
+        else
+          html[key] = 'errorExplanation'
+        end
+      end
+      error_messages = objects.map {|object| object.errors.full_messages.map {|msg| content_tag(:li, msg) } }
+    end
+-%>
+<%- if (count > 0) or flash[:error]-%>
+  <div id="errorExplanation" class="errorExplanation" style="display:none;">
+  	<h2>エラー</h2>
+	
+	<p style="margin-top: 10px;">以下の項目にエラーがあります</p>
+	<%= flash[:error] %>
+   	<%- flash[:error] = nil -%>
+	<%= content_tag(:ul, error_messages) -%>
+
+    <p style="text-align:center;">
+  	  <%= link_to_close_redbox '閉じる' %> 
+    </p>
+  </div>
+<script type="text/javascript">
+//<![CDATA[
+	RedBox.showInline("errorExplanation");
+//]]>
+</script>
+<%- end -%>

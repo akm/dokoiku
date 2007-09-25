@@ -1,0 +1,61 @@
+    <div id="adm_header">
+      <div id="adm_header_bx">
+        <h2><img src="/img/h_admission.gif" alt="どこ行くと～に会員登録しよう" width="227" height="66" /></h2>
+        <p>どこ行くと～？は、その日の気分を色から選ぶと<br />
+          勝手におススメのコースを決めてくれるサービスです。<br />
+          どこ行くと～？に会員登録して、<br />
+
+          あなたのお気に入りコースを登録してみませんか？</p>
+        <br class="clears" />
+      </div>
+    </div>
+    <div id="adm_illust">
+      <% form_for :user, :html => {:id => 'form1'} do |f| %>
+        <div id="adm_form">
+          <h2><img src="/img/form_title.gif" alt="必要事項を入力してね" width="370" height="55" /></h2>
+
+          <dl>
+            <dt><label for="adm_email">メールアドレス</label></dt>
+            <dd>
+              <%= f.text_field :email, :id => 'adm_email' %>
+            </dd>
+            <dt><label for="adm_id">会員ID</label></dt>
+            <dd>
+              <%= f.text_field :login, :id => "adm_id", :size => 12 %>
+            </dd>
+	        <dt><label for="adm_name">名前</label></dt>
+	        <dd>
+	          <%= f.text_field :name, :id => 'adm_name', :size => 12 %>
+	        </dd>
+	        <dt><label for="adm_pw">パスワード</label></dt>
+	        <dd>
+	          <%= f.password_field :password, :id => "adm_pw", :size => 8, :maxlength => 12 %>
+	          ※半角英数4～12文字 </dd>
+	        <dt><label for="adm_pw2">パスワード</label></dt>
+	        <dd>
+	          <%= f.password_field :password_confirmation, :id => "adm_pw2", :size => 8, :maxlength => 12 %>
+	                    （確認用）
+			</dd>
+	        <dt>性別</dt>
+	        <dd>
+	          <%= f.select("sex", User.sex_options ) %>
+	        </dd>
+	        <dt>年齢</dt>
+	        <dd>
+	          <%= f.select("age", User.age_options ) %>
+	        </dd>
+	        <dt>住所</dt>
+	        <dd>
+	          <%= f.select("address", User.address_options ) %>
+	        </dd>
+          </dl>
+          <br class="clears" />
+          <div id="adm_btn">
+          	<input type="image" src="/img/form_btn.gif" alt="会員登録" />
+          </div>
+        </div>
+        <br class="clears" />
+      <% end %>
+    </div>
+	
+	<%= error_messages_for :user %>

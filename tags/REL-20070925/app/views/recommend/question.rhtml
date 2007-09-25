@@ -1,0 +1,103 @@
+      <div class="left_box">
+        <h2><img src="/img/select1.gif" alt="出発地を選んでください" width="380" height="30" /></h2>
+        <div>
+          <input type="text" id="address" size="30" name="address" value="長崎 出島町" onchange="showAddress($F('address'))" />
+          <input type="button" value="Go!" onclick="showAddress($F('address'))" />
+          <p>例：長崎 出島町</p>
+        </div>
+        <form action="/recommend/result" method="post">
+		  <%= hidden_field 'question', 'start_x', :id => "question_start_x" %>
+		  <%= hidden_field 'question', 'start_y', :id => "question_start_y" %>
+<%- map = GoogleMap.new -%>
+<%-
+	if map.markers.empty?
+		map.markers << GoogleMapMarker.new(:map => map,
+                           :lat => 32.74207489599587,
+                           :lng => 129.87160563468933,
+                           :html => '出発地点を選んでね！',
+						   :icon => GoogleMapIcon.new(:image_url => '/img/icon/people.gif', :width => 20, :height => 64, :anchor_x => 10, :anchor_y => 60))
+	end
+-%>
+<script type="text/javascript">
+//<![CDATA[
+var spots = []
+var custom_google_map = null;
+var geocoder = null;
+function customize_google_map(){
+	  var initialize_without_customize = window.onload;
+	  window.onload = function(){
+	  	initialize_without_customize();
+
+		// custom_google_map = google_map;
+		GEvent.addListener(google_map, 'click', function(overlay, point) {
+			  if (point) {
+			  	$("question_start_x").value = point.x;
+			  	$("question_start_y").value = point.y;
+				google_map_marker_1.setPoint(new GLatLng(point.y, point.x))
+			  }
+		    });
+		geocoder = new GClientGeocoder();
+	  }
+}
+function showAddress(address) {
+  if (geocoder) {
+    geocoder.getLatLng(
+      address,
+      function(result) {
+        if (!result) {
+          alert(address + " が見つかりませんでした。");
+        } else {
+          google_map.setCenter(result, 16);
+          google_map.addOverlay(google_map_marker_1);
+          google_map_marker_1.setPoint(result);
+          google_map_marker_1.openInfoWindowHtml(address + "だよ！");
+//          var marker = new GMarker(point);
+//          google_map.addOverlay(marker);
+//          google_map.openInfoWindowHtml(address);
+        }
+      }
+    );
+  }
+}
+//]]>
+</script>
+		  <%= map.to_html{"customize_google_map();"} %>
+		  <div style="width: 380px; height: 340px;">
+		    <%= map.div %>
+		  </div>
+	  </div>
+
+	  <div class="right_box">
+          <h2><img src="/img/select2.gif" alt="今日の気分を選んでください" width="380" height="30" /></h2>
+          <img src="/img/color_table_380_340.png" id="color_table" alt="colors" width="380" height="379" />
+		  <img src="/img/circle_selection.png" id="color_selector" width="24" height="24" style="position:absolute; display:none;"/>
+		  <%= hidden_field 'question', 'feeling_x', :id => "question_feeling_x" %>
+		  <%= hidden_field 'question', 'feeling_y', :id => "question_feeling_y" %>
+		  <%= render :partial => 'course/feeling_script', :locals => {
+					:selector => 'color_selector',
+					:color_table => 'color_table',
+					:feeling_x => 'question_feeling_x',
+					:feeling_y => 'question_feeling_y',
+					:container => 'container'
+				} %>
+	  </div>
+
+	  <div class="left_box">
+        <h2><img src="/img/select3.gif" alt="今日の目的を選んでください" width="380" height="30" /></h2>
+        <%= radio_group 'question', 'purpose_cd', Course::Finder.purpose_enum.to_hash_array do |radio, label, hash, radio_id|
+              	'%s%s &nbsp;&nbsp;' % [radio, label]
+            end%>
+      </div>
+
+	  <div class="right_box margin_b10px">
+        <h2><img src="/img/select4.gif" alt="今日の予算を選んでください" width="380" height="30" /></h2>
+        <%= select("question", "budget_cd", Course::Finder.budget_options ) %>
+      </div>
+
+      <br class="clears" />
+      <div class="text_center">
+      	<input type="image" src="/img/btn.gif" alt="この条件で検索する" width="360" height="42" />
+	  </div>
+    
+	  <input type="hidden" name="result_index" value="1"/>
+	</form>

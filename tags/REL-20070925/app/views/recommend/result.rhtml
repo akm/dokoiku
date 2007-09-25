@@ -1,0 +1,115 @@
+<h2><img src="/img/result.gif" alt="あなたにオススメのコースはこちら" width="770" height="28" /></h2>
+<div id="map"> 
+
+<%- map = GoogleMap.new -%>
+<%- if @course -%>
+<%- 
+	@course.spots.each_with_index do |spot, index| 
+		map.markers << GoogleMapMarker.new(
+			:map => map, 
+			:lat => spot.latitude.to_f, 
+			:lng => spot.longitude.to_f,
+			:html => (render :partial => 'course/inside_baloon', :locals => {:spot => spot }),
+			:icon => GoogleMapIcon.new(
+				:image_url => "/img/icon/pt" + (index + 1).to_s + ".gif", 
+				:width => 38, :height => 53, :anchor_x => 18, :anchor_y => 50,
+				:shadow_width => 37, :shadow_height => 50))
+	end
+	if map.markers.empty?
+		map.markers << GoogleMapMarker.new(:map => map, 
+	                                   :lat => 32.74207489599587, 
+	                                   :lng => 129.87160563468933,
+	                                   :html => '')
+	end
+-%>
+
+  <%= map.to_html %>
+  <div style="width: 580px; height: 380px;">
+    <%= map.div %>
+  </div>
+<%- end -%>
+
+</div>
+<form id="result_form" action="/recommend/result">
+	<input type="hidden" name="result_index" id="result_index"/>
+
+<script type="text/javascript">
+//<![CDATA[
+function click_other_course(result_index){
+	$("result_index").value = result_index;
+	$("result_form").submit();
+}
+//]]>
+</script>
+
+  <div id="result_list">
+    <p class="font_bold font_red"><%=h @course.name %></p>
+    <p>オススメ度　<span class="star_point"><%=h stars(@course.rating) %></span></p>
+	  <h2 id="other_course">他のオススメコース</h2>
+	  <ul>
+	  	<%- @courses.each_with_index do |course, index| -%>
+			<%- next if course == @course -%>
+		    <li>
+		    	<a href="javascript:void(0)" class="other_courses" onclick="click_other_course(<%= (index+1).to_s %>); return false;">
+		    		<%=h course.name %>	
+		    	</a>
+			    <br />
+		      	オススメ度　<span class="star_point"><%=h stars(course.rating) %></span>
+			</li>
+		<%- end -%>
+	  </ul>
+	  <%# p id="more_course"><a href="#">オススメコース一覧</a></p %>
+	  <h2 id="parameter">検索条件</h2>
+	  <dl>
+	    <dt>気分</dt>
+	    <dd><span style="display:block; background-image: url(/img/color_table_380_340.png); background-position:<%= 380 - @question.feeling_x.to_i %>px <%= 340 - @question.feeling_y.to_i %>px; width:16px; height:16px;">&nbsp;</span></dd>
+	    <dt>目的</dt>
+	    <dd>独りで</dd>
+	    <dt>予算</dt>
+	    <dd>1,000円以下</dd>
+	  </dl>
+	  <%= hidden_field 'question', 'start_x', :id => "question_start_x" %>
+	  <%= hidden_field 'question', 'start_y', :id => "question_start_y" %>
+	  <%= hidden_field 'question', 'feeling_x', :id => "question_feeling_x" %>
+	  <%= hidden_field 'question', 'feeling_y', :id => "question_feeling_y" %>
+	  <%= hidden_field 'question', 'purpose_cd', :id => "question_purpose_cd" %>
+	  <%= hidden_field 'question', 'budget_cd', :id => "question_budget_cd" %>
+  
+    <br class="clears" />
+    <a href="/recommend/question"><img src="/img/re_search_btn.gif" alt="条件を変えて検索する" width="176" height="34" class="margin_t10px" /></a>
+  </div>
+  
+ </form> 
+  
+<div id="detail">
+  <h2><img src="/img/detail.gif" alt="コースの詳細" width="770" height="28" /></h2>
+  <table border="0">
+    <tr>
+      <th>順路</th>
+      <th>目的地</th>
+      <th>連絡先</th>
+      <th>予算目安</th>
+    </tr>
+	<%- @course.entries.each do |entry| -%>
+	    <tr>
+	      <td>
+			<a href="javascript:void(0)" 
+				onclick="google_map.panTo(new GLatLng(<%=h entry.spot.latitude %>, <%=h entry.spot.longitude %>));">
+			  <%=h entry.line_no %>
+			</a>
+		  </td>
+	      <td>
+			<a href="javascript:void(0)" 
+				onclick="google_map.panTo(new GLatLng(<%=h entry.spot.latitude %>, <%=h entry.spot.longitude %>));">
+	      	<%=h entry.spot.name %>
+			</a>
+		  </td>
+	      <td>092-000-0000</td>
+	      <td>～1,000円</td>
+	    </tr>
+	<%- end -%>
+  </table>
+  <div id="rate_container">
+	  <%= render :partial => 'recommend/rating' %>
+  </div>
+</div>
