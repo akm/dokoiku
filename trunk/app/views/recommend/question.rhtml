@@ -1,10 +1,47 @@
       <div class="left_box">
         <h2><img src="/img/select1.gif" alt="出発地を選んでください" width="380" height="30" /></h2>
         <div>
-          <input type="text" id="address" size="30" name="address" value="長崎 出島町" onchange="showAddress($F('address'))" />
-          <input type="button" value="Go!" onclick="showAddress($F('address'))" />
+          <input type="text" id="address" size="30" value="長崎 出島町"/>
+          <input type="button" value="Go!" id="move_link"/>
           <p>例：長崎 出島町</p>
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+	function showAddress(address) {
+	  if (geocoder) {
+	    geocoder.getLatLng(
+	      address,
+	      function(result) {
+	        if (!result) {
+	          alert(address + " が見つかりませんでした。");
+	        } else {
+	          google_map.setCenter(result, 16);
+	          google_map.addOverlay(google_map_marker_1);
+	          google_map_marker_1.setPoint(result);
+	          google_map_marker_1.openInfoWindowHtml(address + "だよ！");
+	　　　　　　　　　　// ここでマーカーと入力ボックス表示したい
+	        }
+	      }
+	    );
+	  }
+	}
+
+	var address_field = $('address');
+	Event.observe(address_field, 'keypress', function(event){
+        if (event.keyCode == Event.KEY_RETURN){
+			showAddress(address_field.value);
+			Event.stop(event);
+		}
+	}, true);
+	
+	Event.observe($("move_link"), 'click', function(){
+		showAddress(address_field.value);
+	});
+})();
+//]]>
+</script>
         </div>
+		
         <form action="/recommend/result" method="post">
 		  <%= hidden_field 'question', 'start_x', :id => "question_start_x" %>
 		  <%= hidden_field 'question', 'start_y', :id => "question_start_y" %>
@@ -39,28 +76,9 @@ function customize_google_map(){
 		geocoder = new GClientGeocoder();
 	  }
 }
-function showAddress(address) {
-  if (geocoder) {
-    geocoder.getLatLng(
-      address,
-      function(result) {
-        if (!result) {
-          alert(address + " が見つかりませんでした。");
-        } else {
-          google_map.setCenter(result, 16);
-          google_map.addOverlay(google_map_marker_1);
-          google_map_marker_1.setPoint(result);
-          google_map_marker_1.openInfoWindowHtml(address + "だよ！");
-//          var marker = new GMarker(point);
-//          google_map.addOverlay(marker);
-//          google_map.openInfoWindowHtml(address);
-        }
-      }
-    );
-  }
-}
 //]]>
 </script>
+<%= render :partial => 'layouts/google_map_with_ie' %>
 		  <%= map.to_html{"customize_google_map();"} %>
 		  <div style="width: 380px; height: 340px;">
 		    <%= map.div %>
