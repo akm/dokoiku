@@ -28,6 +28,7 @@ class RecommendController < ApplicationController
     if logged_in?
       @rating = params[:id] ? CourseRating.find(params[:id]) : CourseRating.new
       @rating.attributes = params[:rating]
+      @rating.rating ||= 0
       @rating.user_id = current_user.id
       @rating.save!
     else

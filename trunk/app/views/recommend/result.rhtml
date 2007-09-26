@@ -43,8 +43,8 @@ function click_other_course(result_index){
 </script>
 
   <div id="result_list">
-    <p class="font_bold font_red"><%=h @course.name %></p>
-    <p>オススメ度　<span class="star_point"><%=h stars(@course.rating) %></span></p>
+    <p class="font_bold font_red"><%=h(@course ? @course.name : nil) %></p>
+    <p>オススメ度　<span class="star_point"><%=h stars(@course ? @course.rating : 0)) %></span></p>
 	  <h2 id="other_course">他のオススメコース</h2>
 	  <ul>
 	  	<%- @courses.each_with_index do |course, index| -%>
@@ -90,7 +90,7 @@ function click_other_course(result_index){
       <th>連絡先</th>
       <th>予算目安</th>
     </tr>
-	<%- @course.entries.each do |entry| -%>
+	<%- (@course ? @course.entries : []).each do |entry| -%>
 	    <tr>
 	      <td>
 			<a href="javascript:void(0)" 
