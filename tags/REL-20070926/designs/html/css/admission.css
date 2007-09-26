@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* admission */
+#adm_header{
+  background:#fdd url(../img/waku1.gif) no-repeat top left;
+   
+}
+#adm_header #adm_header_bx{
+  padding-bottom:10px;
+  background: url(../img/waku2.gif) no-repeat left bottom;
+}
+#adm_header_bx h2{
+  float:left;
+  width:250px;
+}
+#adm_header_bx h2 img{
+  margin-left:10px;
+}
+#adm_header_bx p{
+  float:right;
+  width:490px;
+  padding:15px 0 0 0;
+}
+
+#adm_header hr{
+  border:0;
+  height:10px;
+  background:url(../img/waku2.gif) no-repeat bottom left;
+}
+
+#adm_illust{
+  margin-top:10px;
+  background:url(../img/illust.gif) no-repeat 40px 0px;
+}
+#adm_form{
+  width:370px;
+  float:right;
+  background:url(../img/form_bg.gif) repeat-y 0px 0px;
+}
+#adm_form h2 img{
+  margin:0;
+}
+#adm_form dl{
+  margin:0 10px;
+}
+#adm_form dl dt{
+   float:left;
+   width:100px;
+   height:2em;
+   text-align:right;
+   margin-bottom:5px;
+}
+#adm_form dl dd{
+   float:right;
+   width:230px;
+   height:2em;
+   margin-bottom:5px;
+}
+#adm_form #adm_btn{
+   clear:both;
+   text-align:center;
+   padding-top:15px;
+   padding-bottom:15px;
+   background: url(../img/form_btm.gif) no-repeat bottom left;
+}

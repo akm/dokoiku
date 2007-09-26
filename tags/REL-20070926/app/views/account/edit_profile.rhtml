@@ -1,0 +1,48 @@
+<%- @error_object_names = 'user' -%>
+<div id="edit_profile_bg">
+  <% form_for :user, :html => {:id => 'form1'} do |f| %>
+    <div id="edit_profile_box">
+      <h2><img src="/img/edit_prf_illust.gif" alt="変更したらボタンをクリック" width="211" height="180" /></h2>
+      <div id="edit_form">
+        <dl id="edit_form_left">
+          <dt><label for="edit_email">メールアドレス</label></dt>
+          <dd><%=h user:email %></dd>
+
+          <dt><label for="edit_id">会員ID</label></dt>
+          <dd><%=h user:login %></dd>
+
+          <dt><label for="edit_pw">パスワード</label></dt>
+          <dd>
+          	<%= password_field 'user', 'password', :size=> 8, :id => "edit_pw" %>※半角英数4～12文字 
+		  </dd>
+
+          <dt><label for="edit_pw2">パスワード</label></dt>
+          <dd>
+          	<%= password_field 'user', 'password_confirmation', :size=> 8, :id => "edit_pw2" %>（確認用）
+          </dd>
+        </dl>
+        <dl id="edit_form_right">
+	        <dt>性別</dt>
+	        <dd>
+	          <%= f.select("sex", User.sex_options ) %>
+	        </dd>
+	        <dt>年齢</dt>
+	        <dd>
+	          <%= f.select("age", User.age_options ) %>
+	        </dd>
+	        <dt>住所</dt>
+	        <dd>
+	          <%= f.select("address", User.address_options ) %>
+	        </dd>
+        </dl>
+        <br class="clears" />
+      
+	  </div>
+      <br class="clears" />
+    </div>
+	
+    <div id="edit_fix_btn">
+      <input type="image" src="/img/edit_prf_btn.gif" alt="この内容で変更する" />
+    </div>
+  <%- end -%>
+</div>

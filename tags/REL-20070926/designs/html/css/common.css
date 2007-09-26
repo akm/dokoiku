@@ -1,0 +1,513 @@
+@charset "utf-8";
+/* main layout*/
+body {
+	background:#f99;
+	text-align: center;
+}
+.clears {
+	clear:both;
+}
+#all {
+	width: 800px;
+	margin: 0 auto;
+	text-align: left;
+	position:relative;
+	background:#fff;
+}
+#header {
+	height:68px;
+	background:#f99 url(../img/header.gif) no-repeat bottom left;
+}
+#help_btn{
+	top:27px;
+	right:10px;
+	position:absolute;
+}
+#container {
+	padding:0 15px 5px 15px;
+	position:relative;
+}
+#members_login, #members_login_now {
+	height:36px;
+	position:relative;
+}
+#members_login {
+	background:url(../img/members_logout.gif) no-repeat 0 0;
+}
+#members_login_now {
+  margin-bottom:15px;
+	background:url(../img/members_login.gif) no-repeat 0 0;
+}
+.left_box {
+	float:left;
+	width:380px;
+}
+.right_box {
+	float:right;
+	width:380px;
+}
+#footer {
+	clear:both;
+	padding:25px 0;
+	text-align:center;
+	background:#f99 url(../img/footer.gif) no-repeat 0 0;
+}
+
+/* result*/
+#map {
+	float:left;
+	width:580px;
+}
+#result_list {
+	float:right;
+	width:176px;
+}
+#detail {
+	clear:both;
+}
+/* sub layout */
+#container h2 img {
+	margin:10px 0;
+}
+/* decolation */
+.text_right {
+	text-align:right;
+}
+.text_center {
+	text-align:center;
+}
+h2#other_course {
+	padding:5px 0 6px 7px;
+	margin:10px 0 5px 0;
+	background:url(../img/bg_other.gif) no-repeat 0 0;
+}
+h2#parameter {
+	padding:5px 0 6px 7px;
+	margin:10px 0 5px 0;
+	background:url(../img/bg_point.gif) no-repeat 0 0;
+}
+#result_list ul {
+	margin:0 10px 0 0;
+}
+#result_list ul li {
+	padding:0 0 5px 15px;
+	background:url(../img/list.gif) no-repeat 0em .3em;
+}
+#result_list ul li a {
+	font-weight:bold;
+	text-decoration:none;
+	color:#c00;
+}
+#result_list dl {
+	margin-bottom:10px;
+}
+#result_list dl dt {
+	width:40px;
+	float:left;
+}
+#result_list dl dd {
+	width:130px;
+	float:left;
+}
+.margin_b10px {
+	margin-bottom:10px;
+}
+.margin_t10px {
+	margin-top:10px;
+}
+#more_course {
+	text-align:right;
+}
+#more_course a {
+	padding:0 0 5px 12px;
+	text-decoration:none;
+	background:url(../img/list2.gif) no-repeat 0em .3em;
+}
+#detail table {
+	border-collapse:collapse;
+	width:100%;
+}
+#detail table th {
+	font-weight:normal;
+	text-align:left;
+	background:#fcc;
+}
+#detail table th, #detail table td {
+	padding:5px;
+	border-bottom:1px solid #f99;
+}
+.star_point {
+	color:#f90;
+}
+/* member login */
+#members_login #input_area {
+	top:7px;
+	left:420px;
+	position:absolute;
+}
+#members_login img {
+	vertical-align:middle;
+}
+#members_id, #members_pw {
+	margin:0px 5px 0px 0px;
+	width:60px;
+	height:18px;
+	border:1px solid white;
+}
+
+#members_login_now #input_area p{
+	top:9px;
+	left:260px;
+	position:absolute;
+}
+
+#members_login_now #input_area #input_btn {
+	top:7px;
+	left:500px;
+	position:absolute;
+}
+#members_login_now #input_area img {
+	margin-right:5px;
+}
+
+/* result */
+#rate {
+	height:30px;
+	margin:15px 0;
+	padding:4px 0 0 150px;
+	background:url(../img/rate.gif) no-repeat 0 0;
+}
+#rate_btn {
+	vertical-align:bottom;
+}
+/* course */
+#course_menu {
+	width:200px;
+	float:left;
+	background:#F9EEE8;
+}
+#new_course_btn {
+	text-align:center;
+	margin:10px auto;
+}
+#course_menu h2 img {
+	margin:0;
+	padding:0;
+}
+#course_menu h3 {
+	margin:10px 10px 10px 10px;
+}
+#course_menu ul {
+	margin:10px;
+}
+#course_menu ul li {
+	padding:5px 0 0 15px;
+	margin-bottom:10px;
+	border-top:#fcc 1px solid;
+	background:url(../img/list.gif) no-repeat 0em .7em;
+}
+#course_menu ul li a{
+    font-weight:bold;
+	text-decoration:none;
+	color:#c00;
+}
+#course_menu ol {
+	margin:10px;
+	padding-left:20px;
+	list-style-type:decimal;
+}
+#course_menu ol li{
+	margin-bottom:6px;
+}
+#course_menu hr {
+	border:0px;
+	margin:0;
+	background: url(../img/menu_btm.gif) no-repeat bottom left;
+}
+h3.my_title {
+	padding:5px 0 6px 7px;
+	margin:10px 0 5px 0;
+	background:#fcc;
+	font-weight:bold;
+	color:#c00;
+}
+#course_input {
+	width:555px;
+	float:right;
+	background:url(../img/input_name.gif) no-repeat 0 0;
+}
+#c_name h2 {
+	display:none;
+}
+#course_input h2 img {
+	margin-bottom:0;
+}
+#c_name {
+	height:30px;
+	padding:4px 0 0 90px;
+}
+#c_name #course_name{
+	width:400px;
+	height:18px;
+	border:1px solid #fff;
+}
+#comment_box {
+	border:1px solid #f66;
+	padding:15px;
+}
+#comment_box textarea{
+  width:520px;
+  height:100px;
+  border:1px solid #fff;
+}
+#course_table table {
+	border-collapse:collapse;
+	width:555px;
+	margin-bottom:15px;
+}
+#course_table table th {
+	font-weight:normal;
+	text-align:left;
+	background:#fcc;
+}
+#course_table table th, #course_table table td {
+	padding:5px;
+	border-bottom:1px solid #f99;
+}
+#course_btn{
+    margin-top:10px;
+}
+#course_other{
+  margin-top:15px;
+}
+#course_other h2{
+  display:none;
+}
+#course_feeling{
+  float:left;
+  width:165px;
+  height:35px;
+  background:url(../img/input_feeling.gif) no-repeat 0 0;
+}
+#course_feeling p{
+  margin:0 0 0 60px;
+}
+#course_feeling span{
+  font-size:25px;
+  vertical-align:bottom;
+}
+#course_feeling img{
+  margin:0 0 0 10px;
+}
+#course_purpose{
+  float:right;
+  width:383px;
+  height:35px;
+  background:url(../img/input_purpose.gif) no-repeat 0 0;
+}
+#course_purpose div{
+  margin:7px 0 0 60px;
+}
+#feeling_select_window{
+  padding:15px;
+  background:#fff;
+  z-index:10;
+  text-align:center;
+}
+#feeling_select_window h2{
+  margin-bottom:10px;
+}
+#feeling_select_window input{
+  margin:10px auto;
+}
+/* mypage */
+#member_profile{
+  float:left;
+  width:210px;
+  background:url(../img/profile_bg.gif) repeat-y 0 0;
+}
+#member_course{
+  float:right;
+  width:540px;
+}
+#member_profile h2{
+  text-align:center;
+  color:#f33;
+  padding:15px 0 0 0;
+  background:url(../img/profile_top.gif) no-repeat 0 0;
+}
+#member_profile dl{
+  margin:5px 0 0 15px;
+}
+#member_profile dl dt{
+  float:left;
+  width:80px;
+}
+#member_profile dl dd{
+  float:left;
+  width:100px;
+}
+#member_profile hr{
+	border:0px;
+	margin:0;
+	height:15px;
+	background: url(../img/profile_btm.gif) no-repeat bottom left;
+}
+#member_course h2{
+
+}
+#member_course h3{
+  padding:5px 0 5px 15px;
+  background:url(../img/h_course2.gif) no-repeat 0 0;
+}
+#member_course ol{
+  list-style-type:decimal;
+  margin:10px 0 0 30px;
+}
+#member_course ol li{
+  padding:0 0 5px 0;
+}
+/* edit profile */
+#edit_profile_bg{
+  background:url(../img/edit_prf_top.gif) no-repeat 0 0;
+  width:770px;
+  margin:10px auto;
+  padding-top:15px;
+}
+#edit_profile_box{
+  padding:15px;
+  background:url(../img/edit_prf_bg.gif) repeat-y 0 0;
+}
+#edit_profile_box h2{
+  float:left;
+  width:220px;
+}
+#edit_profile_box #edit_form{
+  float:right;
+  width:520px;
+}
+dl#edit_form_left{
+  float:left;
+  width:360px;
+}
+dl#edit_form_right{
+  float:right;
+  width:140px;
+}
+dl#edit_form_left dt,
+dl#edit_form_right dt{
+  width:120px;
+  float:left;
+  margin-bottom:5px;
+}
+dl#edit_form_right dt{width:50px;}
+dl#edit_form_left dd,
+dl#edit_form_right dd{
+  width:220px;
+  float:left;
+  margin-bottom:5px;
+}
+dl#edit_form_right dd{width:80px;}
+
+#edit_fix_btn{
+  text-align:center;
+  background:url(../img/edit_prf_btm.gif) no-repeat bottom left;
+}
+#edit_fix_btn input{
+  margin-bottom:15px;
+}
+/* resign */
+#howto_resign{
+
+}
+#howto_resign h2{
+  float:left;
+  width:200px;
+}
+#resign_contents{
+  float:right;
+  width:520px;
+}
+#resign_text{
+  background:#fdd url(../img/resign_box_top.gif) no-repeat 0 0;
+  padding-top:10px;
+  margin-bottom:15px;
+}
+#resign_text p{
+  padding:0 0 10px 10px;
+  background:#fdd url(../img/resign_box_btm.gif) no-repeat bottom left;
+}
+/* help */
+body#help #container h3 img{ margin:10px 0;}
+.help_div_box{ margin-bottom:15px;}
+
+.w180{ width:180px;}
+.w200{ width:200px;}
+.w240{ width:240px;}
+.w330{ width:330px;}
+.w370{ width:370px;}
+.w500{ width:500px;}
+.w520{ width:520px;}
+.float_l{ float:left;}
+.float_rt{float:right;}
+.float_r{
+  float:right;
+  margin:10px 0;
+}
+ul.help_ul{ 
+  float:right;
+  margin:10px 0;
+  width:390px;
+}
+ul.help_ul li{ padding:0 0 5px 20px;}
+ul.help_ul li.help_stp1{background:url(../img/no1.gif) no-repeat 0px 0px;}
+ul.help_ul li.help_stp2{background:url(../img/no2.gif) no-repeat 0px 0px;}
+ul.help_ul li.help_stp3{background:url(../img/no3.gif) no-repeat 0px 0px;}
+ul.help_ul li.help_stp4{background:url(../img/no4.gif) no-repeat 0px 0px;}
+ul.help_ul li.help_stp5{background:url(../img/no5.gif) no-repeat 0px 0px;}
+/* password */
+#remind_pw_form{
+  margin:0 0 0 50px;
+}
+#remind_pw_form h2{
+  float:left;
+  width:270px;
+}
+#remind_pw dl{
+  float:left;
+  width:320px;
+  margin:30px 0 10px 0;
+}
+#remind_pw dl dt{
+  float:left;
+  width:7em;
+}
+#remind_pw dl dd{
+  float:left;
+  width:200px;
+}
+/* staffroll */
+#from_staff{
+  padding-bottom:15px;
+  background:url(../img/stf_btm.gif) no-repeat bottom left;
+}
+#from_staff p{ line-height:1.5;}
+#staffroll{
+  margin-top:-12px;
+  padding:0 10px;
+  background:url(../img/stf_bg.gif) repeat-y 0 0;
+}
+.staff_contents{
+  padding:0 15px 15px 15px;
+  vertical-align:top;
+}
+.staff_contents p{ margin-top:0;}
+dl.staff_intro dt{
+  float:left;
+  width:210px;
+  text-align:right;
+}
+dl.staff_intro dd{
+  float:left;
+  width:90px;
+}

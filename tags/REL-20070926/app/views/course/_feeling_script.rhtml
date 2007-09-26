@@ -1,0 +1,28 @@
+<%- selector ||= 'color_selector' -%>
+<%- color_table ||= 'color_table' -%>
+<%- feeling_x ||= 'feeling_x' -%>
+<%- feeling_y ||= 'feeling_y' -%>
+<%- container ||= 'container' -%>
+
+<script type="text/javascript">
+//<![CDATA[
+(function(){
+	var color_selector = $("<%=h selector %>");
+	var color_table = $("<%=h color_table %>");
+	var feeling_x = $("<%=h feeling_x %>");
+	var feeling_y = $("<%=h feeling_y %>");
+	Event.observe(color_table, "click", function(event){
+		var tablePos = Position.cumulativeOffset(color_table);
+		var cursor_x = Event.pointerX(event);
+		var cursor_y = Event.pointerY(event);
+		feeling_x.value = cursor_x - tablePos[0];
+		feeling_y.value = cursor_y - tablePos[1];
+		var containerPos = Position.cumulativeOffset($("<%=h container %>"));
+		var color_selector_style = color_selector.style;
+		color_selector_style.display = '';
+		color_selector_style.left = (cursor_x - containerPos[0] - 12) + 'px';
+		color_selector_style.top = (cursor_y - containerPos[1] - 12) + 'px';
+	});
+})();
+//]]>
+</script>

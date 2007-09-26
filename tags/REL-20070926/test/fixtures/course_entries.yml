@@ -1,0 +1,36 @@
+--- 
+course_entry_00001: 
+  line_no: 1
+  id: 1
+  spot_id: 24
+  course_id: 7
+course_entry_00002: 
+  line_no: 1
+  id: 2
+  spot_id: 25
+  course_id: 8
+course_entry_00003: 
+  line_no: 2
+  id: 3
+  spot_id: 26
+  course_id: 8
+course_entry_00004: 
+  line_no: 3
+  id: 4
+  spot_id: 27
+  course_id: 8
+course_entry_00005: 
+  line_no: 1
+  id: 5
+  spot_id: 28
+  course_id: 9
+course_entry_00006: 
+  line_no: 2
+  id: 6
+  spot_id: 29
+  course_id: 9
+course_entry_00007: 
+  line_no: 1
+  id: 7
+  spot_id: 30
+  course_id: 10

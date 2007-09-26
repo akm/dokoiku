@@ -1,0 +1,51 @@
+<%= javascript_include_tag 'staff_roll' %>
+<div id="staff_roll_container" style="background-color:black; color:white; height: 500px;"></div>
+<script type="text/javascript">
+//<![CDATA[
+var staff_roll = new StaffRoll("staff_roll_container", 
+	{
+		team: 'RBC散策倶楽部',
+		project: '今日はどこ行くと～？',
+		staff: [
+			{title: 'all design and HTML', name: 'Mutsuki@CGFM'},
+			{title: 'DB design', name: 'K Tashiro'},
+			{title: 'DB design', name: 'T Mizokami'},
+			{title: 'ruby scripts', name: 'T Hitomi'},
+			{title: 'ruby scripts', name: 'K Kiyota'},
+			{title: 'javascripts', name: 'K Muraoka'},
+			{title: 'the first concept and javascripts', name: 'K Miyajima'},
+			{title: 'other scripts', name: 'akm2000'},
+			{title: 'facilitator', name: 'Chisa K'},
+			{title: 'kommon', name: 'T Sugiyama'},
+			{title: 'who triggered us', name: 'A-hiro Saishu'}
+		],
+		special_thanks: [
+			{name: "Yukihiro 'Matz' Matsumoto and all ruby staff"},
+			{name: "David Heinemeier Hansson and all rails staff"},
+			{name: "Thomas Enebo and all jruby staff"},
+			{name: "Koichiro Eto and all qwikWeb staff"},
+			{name: "Fukuoka prefecture"},
+			{name: "Nagasaki prefecture"}
+		]
+	},
+	{
+		footer: "</dl>" + 
+			"<div style='margin-top:400px; margin-bottom:200px;'>produced by<br/>#{team}</div>" + 
+				"<div style='margin-top:400px; margin-bottom:300px;'>" + 
+					"<a href='http://rubybizcommons.blogspot.com/'>" +
+						'<%= image_tag("/images/rbc_logo.png", {:alt => "Ruby Business Commons"}) %>' + 
+					"</a>" + 
+				"</div>" + 
+				"<div style='margin-top:400px; margin-bottom:30px;'>" + 
+					"<a href='http://www.nagisa.or.jp/news/osirasedetail.php?info_no=58'>" +
+						"<img src='/img/rbc_members.gif'/>" + 
+						// "<img src='http://www.nagisa.or.jp/news/data/img/info/58.jpg' width='650'/>" + 
+					"</a>" + 
+				"</div>" + 
+			"</div>"
+	}
+);
+staff_roll.build();
+staff_roll.process();
+//]]>
+</script>

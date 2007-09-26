@@ -1,0 +1,61 @@
+--- 
+spot_00024: 
+  name: 
+  updated_at: 2000-01-01 08:48:28 +09:00
+  latitude: 33.5848
+  id: 24
+  longitude: 130.362
+  comment: 
+  created_at: 2000-01-01 08:48:28 +09:00
+spot_00025: 
+  name: "\xE3\x82\xB9\xE3\x83\x9D\xE3\x83\x83\xE3\x83\x88A"
+  updated_at: 2000-01-01 15:52:55 +09:00
+  latitude: 32.7427
+  id: 25
+  longitude: 129.871
+  comment: |-
+    AAAAAAA
+    AAAAA
+  created_at: 2000-01-01 15:52:55 +09:00
+spot_00026: 
+  name: "\xE3\x82\xB9\xE3\x83\x9D\xE3\x83\x83\xE3\x83\x88B"
+  updated_at: 2000-01-01 15:52:55 +09:00
+  latitude: 32.7428
+  id: 26
+  longitude: 129.874
+  comment: BBBBB
+  created_at: 2000-01-01 15:52:55 +09:00
+spot_00027: 
+  name: 
+  updated_at: 2000-01-01 15:52:55 +09:00
+  latitude: 32.7392
+  id: 27
+  longitude: 129.869
+  comment: 
+  created_at: 2000-01-01 15:52:55 +09:00
+spot_00028: 
+  name: !binary |
+    44Ok44OV44O844OJ44O844Og
+
+  updated_at: 2000-01-01 15:56:16 +09:00
+  latitude: 33.5945
+  id: 28
+  longitude: 130.361
+  comment: YAHOOOOO DOOOM
+  created_at: 2000-01-01 15:56:16 +09:00
+spot_00029: 
+  name: 
+  updated_at: 2000-01-01 15:56:16 +09:00
+  latitude: 33.5956
+  id: 29
+  longitude: 130.351
+  comment: 
+  created_at: 2000-01-01 15:56:16 +09:00
+spot_00030: 
+  name: 
+  updated_at: 2000-01-01 15:59:37 +09:00
+  latitude: 32.7202
+  id: 30
+  longitude: 129.856
+  comment: 
+  created_at: 2000-01-01 15:59:37 +09:00

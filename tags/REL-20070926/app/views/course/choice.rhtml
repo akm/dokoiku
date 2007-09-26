@@ -1,0 +1,32 @@
+<%= render :partial => (@menu_name || 'layouts/course_menu') %>
+
+<%- map = GoogleMap.new -%>
+<%- if @course -%>
+<%- 
+	@course.spots.each_with_index do |spot, index| 
+		map.markers << GoogleMapMarker.new(
+			:map => map, 
+			:lat => spot.latitude.to_f, 
+			:lng => spot.longitude.to_f,
+			:html => (render :partial => 'inside_baloon', :locals => {:spot => spot }),
+			:icon => GoogleMapIcon.new(
+				:image_url => "/img/icon/pt" + (index + 1).to_s + ".gif", 
+				:width => 38, :height => 53, :anchor_x => 18, :anchor_y => 50,
+				:shadow_width => 37, :shadow_height => 50))
+	end
+	if map.markers.empty?
+		map.markers << GoogleMapMarker.new(:map => map, 
+	                                   :lat => 32.74207489599587, 
+	                                   :lng => 129.87160563468933,
+	                                   :html => '')
+	end
+-%>
+	<%= render :partial => 'layouts/google_map_with_ie' %>
+    <div id="course_output" style="margin-left: 200px;">
+	    <div id="course_map">
+	      <h2><img src="/img/input_map.gif" alt="ルート表示" width="555" height="22" style="margin-top:0px" /></h2>
+	      <div style="width:555px;height:380px;background:#ccc;"><%= map.div %></div>
+	    </div>
+    </div>
+    <%= map.to_html %>
+<%- end -%>

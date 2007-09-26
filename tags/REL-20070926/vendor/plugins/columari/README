@@ -1,0 +1,120 @@
+Columari
+========
+
+Columari allows you can describe validations into column comment in migration.
+
+
+Install
+=====
+ ruby script/plugin install http://rubybizcommons.rubyforge.org/svn/plugins/columari/trunk/columari/
+
+Optional
+=====
+- column_comments
+-- http://blog.inquirylabs.com/2006/11/20/column-comments-13/
+-- http://blog.inquirylabs.com/2006/09/01/updated-columncomments-plugin-v12/
+
+column_comments plugin allows you to describe comment in migration.
+If you write options of extends_column method in comment,
+extends_by_column_comment method executes extends_column automatically.
+
+
+Usage
+=====
+ extends_column(column_name1, [column_name2, ・・・], options)
+
+* column_name
+column name to be extend must be String or Symbol.
+
+* options: 
+options must be a Hash.
+
+** [options key] :base_name
+
+** [options key] :validate, :validates, :validation, :validations
+Values for these keys mean the method to define validation.
+
+If you write just a part of a validation method by using Symbol or String, columari performs:
+ validates_<method_name>_of(<column_name>) 
+or
+ validates_<method_name>(<column_name>)
+
+If you write association method and its options by using Hash, columari performs:
+ validates_<method_name>_of(<column_name>, <options>)
+or
+ validates_<method_name>(<column_name>, <options>)
+
+
+** [options key] :association, :associations
+Values of these keys mean the method to define association. 
+
+If you write just a association method by using Symbol or String, columari performs:
+  <method_name>(<base_name>, <options>)
+
+If you write association method and its options by using Hash, columari performs:
+  <method_name>(<base_name>, <options>)
+
+If the options is nil or doesn't include :foreign_key, 
+the options will be merged with {:foreign_key => <column_name>}
+
+Association method can be allowed belongs_to, has_many or has_one.
+
+
+** [options key] :enum
+Value of this key means a definition of value enumeration. It must be a Hash
+
+*** [options :enum] :entries
+Value of this key must be an Array of entry array.
+Entry array must be 
+  [<value on db>, <key in ruby>, <name on view>]
+
+*** [options :enum] defined class
+class <Model>::<base_name.camelize> < EnumNamed
+end
+
+<Model>::<base_name.camelize> keeps entries.
+
+*** [options :enum] defined methods
+<Model>.<base_name>_cd_by_key(key)
+<Model>.<base_name>_key_by_cd(cd)
+<Model>.<base_name>_name_by_key(key)
+<Model>.<base_name>_name_by_cd(cd)
+<Model>#<base_name>_key
+<Model>#<base_name>_key=(key)
+<Model>#<base_name>_name
+
+
+
+* example
+You can write association, enum and validatoin like these:
+
+ class Telephone < ActiveRecord::Base
+   extends_column :user_id, {
+       :association => :belongs_to,
+       :validates => :presence
+     }
+   extends_column :gender_cd, {
+       :enum => {
+         :entries => [
+                  [1, :female, 'female'],
+                  [2, :male, 'male'],
+                  [3, :unknown, 'unknown']
+         ]
+       },
+       :validates => [:presence]
+     }
+   extends_column :name, {
+   	  :validates => [presence, :uniqueness, :format => {:with => /[a-zA-Z ]+/}]
+     }
+   extends_column :age, {
+       :validates => {:inclusion => {:in => 0..200}}
+     }
+  end
+
+
+
+
+== Resources
+Subversion
+Blog
+Author
