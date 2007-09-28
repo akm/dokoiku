@@ -99,8 +99,8 @@ function customize_google_map(){
 					:container => 'container'
 				} %>
 	  </div>
-
-	  <div class="left_box">
+          <br class="clears" />
+          <div class="left_box">
         <h2><img src="/img/select3.gif" alt="今日の目的を選んでください" width="380" height="30" /></h2>
         <%= radio_group 'question', 'purpose_cd', Course::Finder.purpose_enum.to_hash_array do |radio, label, hash, radio_id|
               	'%s%s &nbsp;&nbsp;' % [radio, label]
