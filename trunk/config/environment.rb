@@ -67,9 +67,6 @@ ActionView::Base.field_error_proc = Proc.new{|html_tag, instance|
 
 # Include your application configuration below
 
-# http://localhost:3000 で実行する場合
-GOOGLE_APPLICATION_ID = "ABQIAAAAG1aAUyebKcmVH8kST6rXphTJQa0g3IQ9GZqIMmInSLzwtGDKaBQTo1Iom0Lb2v4tsvWzB-5g_Tr-yw"
-# http://localhost で実行する場合
-# GOOGLE_APPLICATION_ID = "ABQIAAAAnfs7bKE82qgb3Zc2YyS-oBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSySz_REpPq-4WZA27OwgbtyR3VcA"
+require File.join(File.dirname(__FILE__), 'google_maps_api.rb')
 
 require 'gettext/rails' # Ruby-GetText-Packageを使う宣言です。
